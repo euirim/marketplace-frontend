@@ -4,6 +4,7 @@
   "description": "Frontend for The Chicago Maroon's marketplace. ",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
