@@ -1,6 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Button, Container, Divider, Grid, Header, Image, Menu, Segment } from "semantic-ui-react"
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+  } from "react-router-dom";
 
 import { ListingCard } from "./components/ListingCard";
 
@@ -20,10 +25,6 @@ ReactDOM.render(
                         <Grid.Column>
                             <Header as="h1">Welcome.</Header>
                         </Grid.Column>
-                    </Grid.Row>
-                    
-                    <Grid.Row>
-                        <ListingCard></ListingCard>
                     </Grid.Row>
                 </Grid>
             </Container>
