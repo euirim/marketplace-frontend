@@ -1,20 +1,24 @@
 import React from 'react';
 
+import {
+    Link
+} from "react-router-dom";
+
 import { Card, Image } from 'semantic-ui-react';
 
-export class ListingCard extends React.Component {
+export default class ListingCard extends React.Component {
     render(){
         return (
-            <Card color="red" centered>
+            <Card as={ Link } to={ "/listings/" + this.props.id } color="red" centered>
                 <Image src="https://www.alairhomes.com/wp-content/uploads/sites/28/2015/02/alair-homes-custom-home-builders-canada.jpg"></Image>
                 <Card.Content>
-                    <Card.Header>Large Victorian Mansion</Card.Header>
-                    <Card.Meta><a>Real Estate</a></Card.Meta>
+                    <Card.Header>{ this.props.name }</Card.Header>
+                    <Card.Meta>{ this.props.category.name }</Card.Meta>
                 </Card.Content>
 
                 <Card.Content extra>
                     <Card.Content textAlign="right">
-                        <p>$22</p>
+                        <p>$ { this.props.price }</p>
                     </Card.Content>
                 </Card.Content>
             </Card>
