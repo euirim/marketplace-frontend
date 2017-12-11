@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Header, Grid } from "semantic-ui-react";
 
+import ListingCardGrid from "containers/ListingCardGrid";
+
 export const Home = () => (
     <Container style={{ marginTop: '5em' }}>
         <Grid stackable>
@@ -9,6 +11,8 @@ export const Home = () => (
                     <Header as="h2">Homes</Header>
                 </Grid.Column>
             </Grid.Row>
+
+            <ListingCardGrid></ListingCardGrid>
 
             <Grid.Row>
                 <Grid.Column>

@@ -1,23 +1,29 @@
-const path = require('path');
+const path = require("path");
 
 var config = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist")
   },
   devServer: {
     inline: true,
     port: 3000
- },
- module: {
-  loaders: [
+  },
+  resolve: {
+    modules: [
+      path.resolve("./src"),
+      path.resolve("./node_modules")
+    ]
+  },
+  module: {
+    loaders: [
      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         query: {
-           presets: ['es2015', 'react']
+           presets: ["es2015", "react"]
         }
      }
     ]

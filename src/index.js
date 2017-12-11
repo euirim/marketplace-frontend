@@ -7,9 +7,9 @@ import {
     Link
   } from "react-router-dom";
 
-import { ListingCard } from "./components/ListingCard";
+import { ListingCard } from "components/ListingCard";
 
-import { Home } from "./views/Home";
+import { Home } from "views/Home";
 
 ReactDOM.render(
     (
