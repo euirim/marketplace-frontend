@@ -17,8 +17,8 @@ export default class ListingCardGrid extends React.Component {
         ListingService
             .get_most_recent(3)
             .then(res => {
-                const listings = res.data;
-                this.setState({ listings });
+                const listings = res;
+                this.setState({ listings: listings });
             });
     }
 
