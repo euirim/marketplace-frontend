@@ -13,3 +13,7 @@ function get_most_recent(num) {
         method: "GET"
     });
 }
+
+const ListingService = { get, get_most_recent };
+
+export default ListingService;

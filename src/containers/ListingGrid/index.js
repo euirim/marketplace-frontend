@@ -12,6 +12,7 @@ export class ListingCardGrid extends React.component {
     }
 
     componentDidMount() {
+        
     }
 
     render() {
