@@ -13,9 +13,35 @@ import ScrollToTop from "components/ScrollToTop";
 import { Home } from "views/Home";
 import ListingDetail from "views/ListingDetail";
 
-ReactDOM.render(
-    (
-        <Router>
+if (document.getElementById("app")) {
+    ReactDOM.render(
+        (
+            <Router>
+                <ScrollToTop>
+                <div>
+                    <Menu fixed="top" borderless>
+                        <Menu.Item header>
+                            <Link to="/">
+                                <Header as="h2">Marketplace</Header>
+                            </Link>
+                        </Menu.Item>
+                        <Menu.Item as={ Link } to="/login" position="right">
+                            Login
+                        </Menu.Item>
+                    </Menu>
+
+                    <Route exact path="/" component={Home}/>
+                    <Route path="/listings/:id" component={ListingDetail}/>
+                </div>
+                </ScrollToTop>
+            </Router>
+        ), 
+        document.getElementById("app")
+    );
+}
+else if (document.getElementById("app-login")) {
+    ReactDOM.render(
+        (
             <ScrollToTop>
             <div>
                 <Menu fixed="top" borderless>
@@ -28,12 +54,9 @@ ReactDOM.render(
                         Login
                     </Menu.Item>
                 </Menu>
-
-                <Route exact path="/" component={Home}/>
-                <Route path="/listings/:id" component={ListingDetail}/>
             </div>
             </ScrollToTop>
-        </Router>
-    ), 
-    document.getElementById('app')
-);
+        ), 
+        document.getElementById("app-login")
+    );
+}
