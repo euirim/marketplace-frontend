@@ -42,20 +42,16 @@ if (document.getElementById("app")) {
 else if (document.getElementById("app-login")) {
     ReactDOM.render(
         (
-            <ScrollToTop>
             <div>
                 <Menu fixed="top" borderless>
                     <Menu.Item header>
-                        <Link to="/">
-                            <Header as="h2">Marketplace</Header>
-                        </Link>
+                        <Header as="h2">Marketplace</Header>
                     </Menu.Item>
-                    <Menu.Item as={ Link } to="/login" position="right">
+                    <Menu.Item position="right">
                         Login
                     </Menu.Item>
                 </Menu>
             </div>
-            </ScrollToTop>
         ), 
         document.getElementById("app-login")
     );
