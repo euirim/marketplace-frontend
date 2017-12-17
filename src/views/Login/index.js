@@ -1,6 +1,10 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
+import { Button, Header } from "semantic-ui-react";
+
+import AuthService from "services/api/auth.js";
+
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -8,6 +12,18 @@ export default class Login extends React.Component {
         this.state = {
             redirectToReferrer: false
         };
+
+    }
+
+    componentDidMount() {
+        // Load the FB SDK asynchronously
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     }
 
     render() {
@@ -19,21 +35,13 @@ export default class Login extends React.Component {
                 <Redirect to={from}/>
             );
         }
-        
+
         return (
             <div>
                 <p>Hello</p>
                 <p>Hello</p>
-                <div 
-                    className="fb-login-button" 
-                    data-max-rows="1" 
-                    data-size="large" 
-                    data-button-type="continue_with" 
-                    data-show-faces="false" 
-                    data-auto-logout-link="false" 
-                    data-use-continue-as="false"
-                    >
-                </div>
+                <p>Hello</p>
+                <Button onClick={ AuthService.handleClick }>Login</Button>
             </div>
         )
     }

@@ -76,6 +76,21 @@ function fbSDKInitWrapper() {
     }
 }
 
+function handleClick() {
+        FB.init({
+            appId      : '175852563003044',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v2.11'
+        });
+
+        FB.login(res => {
+            if (res.authResponse) {
+                checkLogin();
+            }
+        });
+}
+
 // checks for authentication cookie. Should only be used
 // for rendering use, not data flow.
 function isAuthenticated() {
@@ -94,6 +109,7 @@ const AuthService = {
     getLoginStatus,
     logout,
     fbSDKInitWrapper,
+    handleClick,
     isAuthenticated
 };
 
