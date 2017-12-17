@@ -24,7 +24,7 @@ function statusChangeCallback(response) {
             .then(res => {
                 // set cookie indicating logged in
                 Cookies.remove("is_authenticated");
-                Cookies.set("is_authenticated:", true, {expires: 14});
+                Cookies.set("is_authenticated", true, {expires: 14});
 
                 window.location.replace("/"); // home page
             })
@@ -56,22 +56,27 @@ function getLoginStatus() {
 }
 
 function logout() {
+    console.log(Cookies.get("csrftoken"));
     var msg = {
         url: "/rest-auth/logout/",
-        method: "POST"
+        method: "POST",
+        headers: {
+            "X-CSRFToken": Cookies.get("csrftoken")
+        },
     };
 
     request(msg)
         .then(res => {
-            if (res.data.detail === "Successfully logged out.") {
+            console.log(res);
+
+            if (res.detail === "Successfully logged out.") {
                 alert("Logged out!");
+                Cookies.remove("is_authenticated");
             }
             else {
                 alert("Logout failed");
             }
         });
-
-    Cookies.remove("is_authenticated");
     return;
 }
 

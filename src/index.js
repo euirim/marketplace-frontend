@@ -12,6 +12,7 @@ import AuthService from "services/api/auth.js";
 
 import ListingCard from "components/ListingCard";
 import ScrollToTop from "components/ScrollToTop";
+import MainNavbar from "components/MainNavbar";
 
 import { Home } from "views/Home";
 import ListingDetail from "views/ListingDetail";
@@ -24,16 +25,7 @@ ReactDOM.render(
         <Router>
             <ScrollToTop>
             <div>
-                <Menu fixed="top" borderless>
-                    <Menu.Item header>
-                        <Link to="/">
-                            <Header as="h2">Marketplace</Header>
-                        </Link>
-                    </Menu.Item>
-                    <Menu.Item as={Link} to="/login" position="right">
-                        Login
-                    </Menu.Item>
-                </Menu>
+                <MainNavbar></MainNavbar>
 
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/login" component={Login}/>

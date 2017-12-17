@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-import { Button, Header } from "semantic-ui-react";
+import { Button, Header, Icon } from "semantic-ui-react";
 
 import AuthService from "services/api/auth.js";
 
@@ -41,7 +41,9 @@ export default class Login extends React.Component {
                 <p>Hello</p>
                 <p>Hello</p>
                 <p>Hello</p>
-                <Button onClick={ AuthService.handleClick }>Login</Button>
+                <Button onClick={ AuthService.handleClick } color="facebook">
+                    <Icon name="facebook" /> Login with Facebook
+                </Button>
             </div>
         )
     }
