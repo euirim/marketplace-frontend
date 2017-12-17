@@ -2,6 +2,7 @@
  * Social authentication helpers for Maroon Marketplace.
  */
 
+import Cookies from "js-cookie";
 import request from "shared/lib/request";
 
 // handles response from Facebook SDK
@@ -21,6 +22,10 @@ function statusChangeCallback(response) {
 
         request(msg)
             .then(res => {
+                // set cookie indicating logged in
+                Cookies.remove("is_authenticated");
+                Cookies.set("is_authenticated:", true, {expires: 14});
+
                 window.location.replace("/"); // home page
             })
             .catch(res => {
@@ -51,26 +56,45 @@ function getLoginStatus() {
 }
 
 function logout() {
+    Cookies.remove("is_authenticated");
     return;
 }
 
 // wrapper for FB SDK init
 function fbSDKInitWrapper() {
-    FB.init({
-        appId      : '175852563003044',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v2.11'
-    });
-    
-    FB.AppEvents.logPageView();   
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '175852563003044',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v2.11'
+        });
+        
+        FB.AppEvents.logPageView();   
+
+        FB.Event.subscribe('auth.login', checkLogin);
+    }
+}
+
+// checks for authentication cookie. Should only be used
+// for rendering use, not data flow.
+function isAuthenticated() {
+    var cookie = Cookies.get("is_authenticated");
+
+    if (cookie) {
+        return cookie;
+    }
+    else {
+        return false;
+    }
 }
 
 const AuthService = {
     checkLogin, 
     getLoginStatus,
     logout,
-    fbSDKInitWrapper
+    fbSDKInitWrapper,
+    isAuthenticated
 };
 
 export default AuthService;
