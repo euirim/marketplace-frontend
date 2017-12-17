@@ -8,12 +8,19 @@ import { Menu, Header, Dropdown } from "semantic-ui-react";
 import AuthService from "services/api/auth.js";
 
 export default class MainNavbar extends React.Component {
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+            isAuthenticated: this.props.isAuthenticated
+        };
+    }
+
     render() {
-        console.log(AuthService.isAuthenticated());
         var userStatusIndicator;
-        if (AuthService.isAuthenticated()) {
+        if (this.state.isAuthenticated) {
             userStatusIndicator = (
-                <Dropdown item text="Settings">
+                <Dropdown item icon="setting">
                     <Dropdown.Menu>
                         <Dropdown.Item>Profile</Dropdown.Item>
                         <Dropdown.Item as={Link} to="/logout">Logout</Dropdown.Item>
@@ -33,7 +40,7 @@ export default class MainNavbar extends React.Component {
             <Menu fixed="top" borderless>
                 <Menu.Item header>
                     <Link to="/">
-                        <Header as="h2">Marketplace</Header>
+                        <Header as="h3">Marketplace</Header>
                     </Link>
                 </Menu.Item>
                 <Menu.Menu position="right">

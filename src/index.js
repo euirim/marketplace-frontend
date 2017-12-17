@@ -25,7 +25,7 @@ ReactDOM.render(
         <Router>
             <ScrollToTop>
             <div>
-                <MainNavbar></MainNavbar>
+                <MainNavbar isAuthenticated={AuthService.isAuthenticated()}></MainNavbar>
 
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/login" component={Login}/>
