@@ -56,6 +56,21 @@ function getLoginStatus() {
 }
 
 function logout() {
+    var msg = {
+        url: "/rest-auth/logout/",
+        method: "POST"
+    };
+
+    request(msg)
+        .then(res => {
+            if (res.data.detail === "Successfully logged out.") {
+                alert("Logged out!");
+            }
+            else {
+                alert("Logout failed");
+            }
+        });
+
     Cookies.remove("is_authenticated");
     return;
 }
