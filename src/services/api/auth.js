@@ -22,9 +22,10 @@ function statusChangeCallback(response) {
 
         request(msg)
             .then(res => {
+                console.log(res);
                 // set cookie indicating logged in
-                Cookies.remove("is_authenticated");
-                Cookies.set("is_authenticated", true, {expires: 14});
+                Cookies.remove("authName");
+                Cookies.set("authName", res.firstName, {expires: 14});
 
                 window.location.replace("/"); // home page
             })
@@ -71,7 +72,7 @@ function logout() {
 
             if (res.detail === "Successfully logged out.") {
                 alert("Logged out!");
-                Cookies.remove("is_authenticated");
+                Cookies.remove("authName");
             }
             else {
                 alert("Logout failed");
@@ -113,15 +114,21 @@ function handleClick() {
 
 // checks for authentication cookie. Should only be used
 // for rendering use, not data flow.
+// returns tuple, with first element being whether user
+// is authenticated.
 function isAuthenticated() {
-    var cookie = Cookies.get("is_authenticated");
+    var cookie = Cookies.get("authName");
 
     if (cookie) {
-        return cookie;
+        return true;
     }
     else {
         return false;
     }
+}
+
+function getUserName() {
+    return Cookies.get("authName");
 }
 
 const AuthService = {
@@ -130,7 +137,8 @@ const AuthService = {
     logout,
     fbSDKInitWrapper,
     handleClick,
-    isAuthenticated
+    isAuthenticated,
+    getUserName
 };
 
 export default AuthService;

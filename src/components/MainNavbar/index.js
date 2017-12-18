@@ -8,31 +8,30 @@ import { Menu, Header, Dropdown } from "semantic-ui-react";
 import AuthService from "services/api/auth.js";
 
 export default class MainNavbar extends React.Component {
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-            isAuthenticated: this.props.isAuthenticated
-        };
-    }
-
     render() {
         var userStatusIndicator;
-        if (this.state.isAuthenticated) {
+        if (AuthService.isAuthenticated()) {
             userStatusIndicator = (
-                <Dropdown item icon="setting">
-                    <Dropdown.Menu>
-                        <Dropdown.Item>Profile</Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/logout">Logout</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown>
+                <Menu.Menu position="right">
+                    <Menu.Item>
+                        { this.props.firstName }
+                    </Menu.Item>
+                    <Dropdown item icon="setting">
+                        <Dropdown.Menu>
+                            <Dropdown.Item>Profile</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/logout">Logout</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </Menu.Menu>
             );
         } 
         else {
             userStatusIndicator = (
-                <Menu.Item as={Link} to="/login">
-                    Login
-                </Menu.Item>
+                <Menu.Menu position="right">
+                    <Menu.Item as={Link} to="/login">
+                        Login
+                    </Menu.Item>
+                </Menu.Menu>
             );
         }
 
@@ -43,9 +42,7 @@ export default class MainNavbar extends React.Component {
                         <Header as="h3">Marketplace</Header>
                     </Link>
                 </Menu.Item>
-                <Menu.Menu position="right">
                 { userStatusIndicator }
-                </Menu.Menu>
             </Menu>
         );
     }
