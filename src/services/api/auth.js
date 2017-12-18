@@ -22,12 +22,19 @@ function statusChangeCallback(response) {
 
         request(msg)
             .then(res => {
-                console.log(res);
                 // set cookie indicating logged in
                 Cookies.remove("authName");
-                Cookies.set("authName", res.firstName, {expires: 14});
+                Cookies.set("authName", undefined, {expires: 14});
 
-                window.location.replace("/"); // home page
+                getLoginStatus()
+                    .then(res => {
+                        var cookie = {
+                            "firstName": res.firstName,
+                            "lastName": res.lastName
+                        };
+                        Cookies.set("authName", cookie, {expires: 14});
+                        window.location.replace("/"); // home page
+                    });
             })
             .catch(res => {
                 console.log("POST request for auth failed.");
@@ -128,7 +135,7 @@ function isAuthenticated() {
 }
 
 function getUserName() {
-    return Cookies.get("authName");
+    return Cookies.getJSON("authName");
 }
 
 const AuthService = {

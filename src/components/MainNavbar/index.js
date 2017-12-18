@@ -4,7 +4,7 @@ import {
     Link
 } from "react-router-dom";
 
-import { Menu, Header, Dropdown } from "semantic-ui-react";
+import { Menu, Header, Dropdown, Icon } from "semantic-ui-react";
 import AuthService from "services/api/auth.js";
 
 export default class MainNavbar extends React.Component {
@@ -13,13 +13,13 @@ export default class MainNavbar extends React.Component {
         if (AuthService.isAuthenticated()) {
             userStatusIndicator = (
                 <Menu.Menu position="right">
-                    <Menu.Item>
-                        { this.props.firstName }
+                    <Menu.Item as={Link} to="/profile">
+                        <Icon name="user"/> { this.props.profile.firstName }
                     </Menu.Item>
                     <Dropdown item icon="setting">
                         <Dropdown.Menu>
-                            <Dropdown.Item>Profile</Dropdown.Item>
-                            <Dropdown.Item as={Link} to="/logout">Logout</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/profile">My Listings</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/logout">Log Out</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Menu.Menu>
