@@ -14,7 +14,7 @@ import ListingCard from "components/ListingCard";
 import ScrollToTop from "components/ScrollToTop";
 import MainNavbar from "components/MainNavbar";
 
-import { Home } from "views/Home";
+import Home from "views/Home";
 import ListingDetail from "views/ListingDetail";
 import Login from "views/Login";
 import Logout from "views/Logout";

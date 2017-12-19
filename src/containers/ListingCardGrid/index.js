@@ -2,7 +2,6 @@ import React from "react";
 
 import { Container } from "semantic-ui-react";
 
-import ListingService from "services/api/listing.js";
 import ListingCard from "components/ListingCard";
 
 export default class ListingCardGrid extends React.Component {
@@ -15,7 +14,16 @@ export default class ListingCardGrid extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props.listings);
         this.setState({listings: this.props.listings});
+    }
+
+    componentWillReceiveProps(nextProps) {
+        // updates if current state is empty
+        // for props promises
+        if (this.state.listings.length == 0) {
+            this.setState({listings: nextProps.listings});
+        }
     }
 
     render() {
