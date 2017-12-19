@@ -4,7 +4,8 @@ import { Button, Container, Divider, Grid, Header, Image, Menu, Segment } from "
 import {
     BrowserRouter as Router,
     Route,
-    Link
+    Link,
+    Switch
   } from "react-router-dom";
 
 import PrivateRoute from "shared/lib/PrivateRoute";
@@ -19,6 +20,7 @@ import ListingDetail from "views/ListingDetail";
 import Login from "views/Login";
 import Logout from "views/Logout";
 import Profile from "views/Profile";
+import AddListing from "views/AddListing";
 
 
 ReactDOM.render(
@@ -34,7 +36,10 @@ ReactDOM.render(
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/logout" component={Logout}/>
-                <PrivateRoute path="/listings/:id" component={ListingDetail}/>
+                <Switch>
+                    <PrivateRoute exact path="/listings/add" component={AddListing}/>
+                    <PrivateRoute path="/listings/:id" component={ListingDetail}/>
+                </Switch>
                 <PrivateRoute exact path="/profile" component={Profile}/>
             </div>
             </ScrollToTop>

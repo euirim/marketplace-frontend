@@ -38,6 +38,7 @@ export default class Profile extends React.Component {
                     <Grid.Row>
                         <Grid.Column>
                             <Header as="h1">{ this.state.firstName } { this.state.lastName }</Header>
+                            <Button as={Link} to="/listings/add">Add Listing</Button>
                             <Header as="h2">Listings</Header>
                             
                             <ListingCardGrid listings={this.state.listings}>
