@@ -16,7 +16,7 @@ function get_most_recent(num) {
 
 function get_my_listings(num) {
     return request({
-        url: `/listings.json`,
+        url: `/listings/user.json`,
         method: "GET"
     });
 }
