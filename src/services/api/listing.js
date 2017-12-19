@@ -14,6 +14,17 @@ function get_most_recent(num) {
     });
 }
 
-const ListingService = { get, get_most_recent };
+function get_my_listings(num) {
+    return request({
+        url: `/listings.json`,
+        method: "GET"
+    });
+}
+
+const ListingService = { 
+    get, 
+    get_most_recent,
+    get_my_listings
+};
 
 export default ListingService;

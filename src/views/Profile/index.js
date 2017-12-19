@@ -25,7 +25,8 @@ export default class Profile extends React.Component {
                 <Grid stackable>
                     <Grid.Row>
                         <Grid.Column>
-                            <Header as="h2">{ this.state.firstName } { this.state.lastName }</Header>
+                            <Header as="h1">{ this.state.firstName } { this.state.lastName }</Header>
+                            <Header as="h2">Listings</Header>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
