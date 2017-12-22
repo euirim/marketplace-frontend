@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+
 import request from "shared/lib/request";
 
 function get(id) {
@@ -21,10 +23,22 @@ function get_my_listings(num) {
     });
 }
 
+function put(data) {
+    return request({
+        url: `/listings.json`,
+        method: "PUT",
+        headers: {
+            "X-CSRFToken": Cookies.get("csrftoken")
+        },
+        data: data
+    }); 
+}
+
 const ListingService = { 
     get, 
     get_most_recent,
-    get_my_listings
+    get_my_listings,
+    put
 };
 
 export default ListingService;

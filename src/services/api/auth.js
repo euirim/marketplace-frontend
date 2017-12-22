@@ -64,7 +64,6 @@ function getLoginStatus() {
 }
 
 function logout() {
-    console.log(Cookies.get("csrftoken"));
     var msg = {
         url: "/rest-auth/logout/",
         method: "POST",
