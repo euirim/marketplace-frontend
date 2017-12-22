@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container } from "semantic-ui-react";
+import { Container, Card } from "semantic-ui-react";
 
 import ListingCard from "components/ListingCard";
 
@@ -36,7 +36,9 @@ export default class ListingCardGrid extends React.Component {
                 category={ listing.category } />
         );
         return (
-            <div>{ listings }</div>
+            <Card.Group itemsPerRow={3}>
+                { listings }
+            </Card.Group>
         );
     }
 }

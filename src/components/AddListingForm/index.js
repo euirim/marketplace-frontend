@@ -3,6 +3,8 @@ import React from "react";
 import { Form, Text, Select, TextArea } from 'react-form';
 import { Container, Header, Grid } from "semantic-ui-react";
 
+import { Redirect } from "react-router-dom";
+
 import ListingService from "services/api/listing.js";
 
 const categoryOptions = [
@@ -22,12 +24,10 @@ export default class AddListingForm extends React.Component {
     handleSubmit(submittedVals) {
         this.setState({submittedVals});
 
-        console.log(submittedVals);
-
         ListingService
             .put(submittedVals)
             .then(res => {
-                console.log(res);
+                this.setState({ fireRedirect: true });
             });
     }
 
@@ -54,10 +54,17 @@ export default class AddListingForm extends React.Component {
             </form>
         );
 
-        return (
-            <Form 
-                onSubmit={this.handleSubmit}
-                component={FormContent} />
-        );
+        if (this.state.fireRedirect) {
+            return (
+                <Redirect to="/profile" />
+            );
+        }
+        else {
+            return (
+                <Form 
+                    onSubmit={this.handleSubmit}
+                    component={FormContent} />
+            );
+        }
     }
 }
