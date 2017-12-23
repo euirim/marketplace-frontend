@@ -35,7 +35,7 @@ export default class ListingDetail extends React.Component {
                                 <p>{ this.state.listing.about }</p>
                             </Grid.Column>
                             <Grid.Column width={6}>
-                                <ContactForm listingID={this.props.match.params.id} />
+                                <InquiryForm listingID={this.props.match.params.id} />
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
