@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom";
 
 import InquiryService from "services/api/inquiries.js";
 
-export default class ContactForm extends React.Component {
+export default class InquiryForm extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);

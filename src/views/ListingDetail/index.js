@@ -3,7 +3,7 @@ import React from "react";
 import { Container, Header, Grid } from "semantic-ui-react";
 
 import ListingService from "services/api/listing.js";
-import ContactForm from "components/ContactForm";
+import InquiryForm from "components/InquiryForm";
 
 export default class ListingDetail extends React.Component {
     constructor(props) {
