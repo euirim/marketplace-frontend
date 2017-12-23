@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Form, Text, Select, TextArea } from 'react-form';
-import { Container, Header, Grid } from "semantic-ui-react";
+import { Container, Header, Grid, Message } from "semantic-ui-react";
 
 import { Redirect } from "react-router-dom";
 
@@ -36,10 +36,21 @@ export default class InquiryForm extends React.Component {
             </form>
         );
 
-        return (
-            <Form 
-                onSubmit={this.handleSubmit}
-                component={FormContent} />
-        );
+        if (this.state.successfulSubmit) {
+            return (
+                <Message
+                    icon="check"
+                    header="Inquiry sent."
+                    content="Please check your email for a response from the lister."
+                />
+            );
+        }
+        else {
+            return (
+                <Form 
+                    onSubmit={this.handleSubmit}
+                    component={FormContent} />
+            );
+        }
     }
 }
