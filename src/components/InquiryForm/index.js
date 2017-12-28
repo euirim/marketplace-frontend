@@ -5,7 +5,7 @@ import { Container, Header, Grid, Message } from "semantic-ui-react";
 
 import { Redirect } from "react-router-dom";
 
-import InquiryService from "services/api/inquiries.js";
+import InquiryService from "services/api/inquiry.js";
 
 export default class InquiryForm extends React.Component {
     constructor(props) {

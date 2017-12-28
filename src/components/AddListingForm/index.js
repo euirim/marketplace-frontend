@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import React from "react";
 
 import { Form, Text, Select, TextArea } from "react-form";
@@ -6,6 +8,7 @@ import { Redirect } from "react-router-dom";
 import Dropzone from "react-dropzone";
 
 import ListingService from "services/api/listing.js";
+import PhotoService from "services/api/photo.js";
 
 const categoryOptions = [
     {
@@ -19,7 +22,7 @@ export default class AddListingForm extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.state = { files: [], maxFilesExceeded: false };
+        this.state = { files: [], file_ids: [], maxFilesExceeded: false };
     }
 
     onDrop(files) {
@@ -33,13 +36,35 @@ export default class AddListingForm extends React.Component {
     }
 
     handleSubmit(submittedVals) {
+        // TODO: Loading bar
+
         this.setState({submittedVals});
 
-        ListingService
-            .put(submittedVals)
-            .then(res => {
-                this.setState({ fireRedirect: true });
+        if (this.state.files.length != 0) {
+            // upload files 
+            const uploaders = this.state.files.map(file => {
+                return PhotoService
+                    .put(file)
+                    .then(res => {
+                        this.setState(
+                            { file_ids: this.state.file_ids.push(res.image)}
+                        );
+                    });
             });
+
+            // after all the uploads are complete
+            axios.all(uploaders).then(() => {
+                this.setState({ files: [] });
+
+                console.log(this.state);
+
+                ListingService
+                    .put(this.state)
+                    .then(res => {
+                        this.setState({ fireRedirect: true });
+                    });
+            });
+        }
     }
 
     render() {
@@ -56,7 +81,7 @@ export default class AddListingForm extends React.Component {
         }
 
         const FormContent = props => (
-            <form onSubmit={props.formApi.submitForm}>
+            <form encType="multipart/form-data" onSubmit={props.formApi.submitForm}>
                 <div className="ui input">
                     <Text field="name" id="name" className="ui input" placeholder="Name" />
                 </div>
@@ -73,7 +98,7 @@ export default class AddListingForm extends React.Component {
                     <Text field="price" id="price" />
                 </div>
 
-                <Dropzone onDrop={this.onDrop.bind(this)}>
+                <Dropzone onDrop={this.onDrop.bind(this)} accept="image/*">
                     <DropzoneMsg />
 
                     <List as='ol'>
