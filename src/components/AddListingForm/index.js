@@ -46,8 +46,9 @@ export default class AddListingForm extends React.Component {
                 return PhotoService
                     .put(file)
                     .then(res => {
+                        this.state.file_ids.push(res.image);
                         this.setState(
-                            { file_ids: this.state.file_ids.push(res.image)}
+                            { file_ids: this.state.file_ids }
                         );
                     });
             });
@@ -56,10 +57,13 @@ export default class AddListingForm extends React.Component {
             axios.all(uploaders).then(() => {
                 this.setState({ files: [] });
 
-                console.log(this.state);
+                var requestData = submittedVals; 
+                requestData["file_ids"] = this.state.file_ids;
+
+                console.log(requestData);
 
                 ListingService
-                    .put(this.state)
+                    .put(requestData)
                     .then(res => {
                         this.setState({ fireRedirect: true });
                     });
