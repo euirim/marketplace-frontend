@@ -17,6 +17,13 @@ const categoryOptions = [
     },
 ];
 
+const errorValidator = (values) => {
+    return {
+        price: values.price &&
+            !(values.price >= 0) ? "Input must be a number greater than or equal to 0." : null
+    };
+};
+
 
 export default class AddListingForm extends React.Component {
     constructor(props) {
@@ -86,23 +93,24 @@ export default class AddListingForm extends React.Component {
 
         const FormContent = props => (
             <form encType="multipart/form-data" onSubmit={props.formApi.submitForm}>
-                <div className="ui input">
-                    <Text field="name" id="name" className="ui input" placeholder="Name" />
+                <div className="ui required input">
+                    <Text field="name" id="name" className="ui input" placeholder="Name" required />
                 </div>
                 
-                <div className="ui input">
-                    <TextArea field="about" id="about" />
+                <div className="ui required input">
+                    <TextArea field="about" id="about" required />
                 </div>
 
                 <div className="ui input">
-                    <Select field="category" id="category" options={categoryOptions} />
+                    <Select field="category" id="category" options={categoryOptions} required />
                 </div>
 
                 <div className="ui input">
-                    <Text field="price" id="price" />
+                    <Text field="price" id="price" required />
+                    <p>{ props.formApi.errors.price }</p>
                 </div>
 
-                <Dropzone onDrop={this.onDrop.bind(this)} accept="image/*">
+                <Dropzone onDrop={this.onDrop.bind(this)} accept="image/*" required>
                     <DropzoneMsg />
 
                     <List as='ol'>
@@ -126,6 +134,7 @@ export default class AddListingForm extends React.Component {
         else {
             return (
                 <Form 
+                    validateError={errorValidator}
                     onSubmit={this.handleSubmit}
                     component={FormContent} />
             );
