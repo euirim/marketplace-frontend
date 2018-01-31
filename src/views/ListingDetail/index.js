@@ -27,7 +27,7 @@ export default class ListingDetail extends React.Component {
 
         if (this.state.listing) {
             content = (
-                <Container style={{ marginTop: '5em' }}>
+                <Container style={{ paddingTop: '5em' }}>
                     <Grid stackable>
                         <Grid.Row>
                             <Grid.Column width={10}>

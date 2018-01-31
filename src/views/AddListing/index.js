@@ -8,7 +8,7 @@ import AddListingForm from "components/AddListingForm";
 export default class AddListing extends React.Component {
     render() {
         return (
-            <Container style={{ marginTop: '5em' }}>
+            <Container style={{ paddingTop: '5em' }}>
                 <Header as="h1">Add Listing</Header>
                 <AddListingForm />
             </Container>

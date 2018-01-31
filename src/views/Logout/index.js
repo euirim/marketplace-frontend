@@ -11,7 +11,7 @@ export default class Logout extends React.Component {
             AuthService.logout();
 
             return (
-                <Container style={{ marginTop: '5em' }}>
+                <Container style={{ paddingTop: '5em' }}>
                     <p>Successfully logged out!</p>                
                 </Container>
             );

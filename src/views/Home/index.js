@@ -23,7 +23,7 @@ export default class Home extends React.Component {
 
     render() {
         return (
-            <Container style={{ marginTop: '5em' }}>
+            <Container style={{ paddingTop: '5em' }}>
                 <Grid stackable>
                     <Grid.Row>
                         <Grid.Column>
