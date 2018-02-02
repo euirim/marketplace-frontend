@@ -40,9 +40,12 @@ export default class Login extends React.Component {
             <Container style={{ paddingTop: '5em' }}>
                 <Grid stackable>
                     <Grid.Row>
-                        <Button onClick={ AuthService.handleClick } color="facebook">
-                            <Icon name="facebook" /> Login with Facebook
-                        </Button>
+                        <Grid.Column>
+                            <Header as="h2">Login</Header>
+                            <Button onClick={ AuthService.handleClick } color="facebook">
+                                <Icon name="facebook" /> Login with Facebook
+                            </Button>
+                        </Grid.Column>
                     </Grid.Row>
                 </Grid>
             </Container>
