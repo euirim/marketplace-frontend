@@ -30,12 +30,15 @@ export default class ListingDetail extends React.Component {
         var content;
 
         if (this.state.listing) {
-            const images = [
-                {
-                    original: "https://www.ford.com/cmslibs/content/dam/brand_ford/en_us/brand/legacy/nameplate/cars/18_mst_segment_landing_32.jpg/_jcr_content/renditions/cq5dam.web.1280.1280.jpeg",
-                    thumbnail: "https://www.ford.com/cmslibs/content/dam/brand_ford/en_us/brand/legacy/nameplate/cars/18_mst_segment_landing_32.jpg/_jcr_content/renditions/cq5dam.web.1280.1280.jpeg"
-                }
-            ];
+            var images = [];
+            
+            for (var i=0; i < this.state.listing.photos.length; i++) {
+                images.push({
+                    original: this.state.listing.photos[i],
+                    thumbnail: this.state.listing.photos[i]
+                });
+            }
+
             const ContactModal = () => (
                 <Modal size="tiny" trigger={<Button color="red">Contact</Button>}>
                     <Modal.Header>Contact the lister</Modal.Header>
