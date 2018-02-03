@@ -33,7 +33,8 @@ export default class ListingCardGrid extends React.Component {
                 id={ listing.id }
                 name={ listing.name } 
                 price={ listing.price } 
-                category={ listing.category } />
+                category={ listing.category } 
+                photo={ listing.photos[0] } />
         );
         return (
             <Card.Group itemsPerRow={3}>

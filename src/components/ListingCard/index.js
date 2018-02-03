@@ -10,7 +10,7 @@ export default class ListingCard extends React.Component {
     render(){
         return (
             <Card as={ Link } to={ "/listings/" + this.props.id } color="red" centered>
-                <Image src="https://www.alairhomes.com/wp-content/uploads/sites/28/2015/02/alair-homes-custom-home-builders-canada.jpg"></Image>
+                <Image src={ this.props.photo }></Image>
                 <Card.Content>
                     <Card.Header>{ this.props.name }</Card.Header>
                     <Card.Meta>{ this.props.category.name }</Card.Meta>
