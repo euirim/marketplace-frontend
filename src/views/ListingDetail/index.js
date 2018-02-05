@@ -64,13 +64,11 @@ export default class ListingDetail extends React.Component {
                                 <Header as="h1">{ this.state.listing.name }</Header>
                                 <Header as="h3">${ this.state.listing.price }</Header>
 
-                                <p>
-                                    <ShowMoreText
-                                        lines={5}
-                                    >
-                                        { this.state.listing.about }
-                                    </ShowMoreText>
-                                </p>
+                                <ShowMoreText
+                                    lines={5}
+                                >
+                                    <p>{ this.state.listing.about }</p>
+                                </ShowMoreText>
 
                                 <ContactModal/>
                             </Grid.Column>
