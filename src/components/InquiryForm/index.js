@@ -22,17 +22,18 @@ export default class InquiryForm extends React.Component {
             .put(submittedVals)
             .then(res => {
                 this.setState({ successfulSubmit: true });
+                this.props.parentHandler();
             });
     }
 
     render() {
         const FormContent = props => (
-            <form onSubmit={props.formApi.submitForm}>
-                <div className="ui input">
+            <form className="ui form" onSubmit={props.formApi.submitForm}>
+                <div className="field required">
                     <TextArea field="msg" id="msg" />
                 </div>
 
-                <button type="submit">Submit</button>
+                <button className="ui button" type="submit">Submit</button>
             </form>
         );
 

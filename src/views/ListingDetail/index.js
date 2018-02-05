@@ -1,6 +1,13 @@
 import React from "react";
 
-import { Container, Header, Grid, Modal, Button } from "semantic-ui-react";
+import { 
+    Container, 
+    Header, 
+    Grid, 
+    Modal, 
+    Button,
+    Icon
+} from "semantic-ui-react";
 import ShowMoreText from 'react-show-more-text';
 import ImageGallery from 'react-image-gallery';
 
@@ -13,8 +20,11 @@ export default class ListingDetail extends React.Component {
     constructor(props) {
         super(props);
     
+        this.handleContact = this.handleContact.bind(this);
+
         this.state = {
-            listing: null
+            listing: null,
+            contacted: false
         };
     }
 
@@ -24,6 +34,10 @@ export default class ListingDetail extends React.Component {
             .then(res => {
                 this.setState({ listing: res });
             });
+    }
+
+    handleContact() {
+        this.setState({ contacted: true });
     }
 
     render() {
@@ -39,17 +53,30 @@ export default class ListingDetail extends React.Component {
                 });
             }
 
-            const ContactModal = () => (
-                <Modal size="tiny" trigger={<Button color="red">Contact</Button>}>
-                    <Modal.Header>Contact the lister</Modal.Header>
-                    
-                    <Modal.Content>
-                        <Modal.Description>
-                            <InquiryForm listingID={this.props.match.params.id} />
-                        </Modal.Description>
-                    </Modal.Content>
-                </Modal>
-            );
+            const ContactModal = () => {
+                if (this.state.contacted) {
+                    return (
+                        <Button icon lablePosition="left" disabled>
+                            <Icon name='check' />
+                            Contacted
+                        </Button>
+                    );
+                }
+
+                return (
+                    <Modal size="tiny" trigger={<Button color="red">Contact</Button>}>
+                        <Modal.Header>Contact the lister</Modal.Header>
+                        
+                        <Modal.Content>
+                            <Modal.Description>
+                                <InquiryForm 
+                                    listingID={this.props.match.params.id} 
+                                    parentHandler={this.handleContact} />
+                            </Modal.Description>
+                        </Modal.Content>
+                    </Modal>
+                );
+            };
 
             content = (
                 <Container style={{ paddingTop: '5em' }}>
