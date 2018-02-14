@@ -56,7 +56,7 @@ export default class ListingDetail extends React.Component {
             const ContactModal = () => {
                 if (this.state.contacted) {
                     return (
-                        <Button icon lablePosition="left" disabled>
+                        <Button icon labelPosition="left" disabled>
                             <Icon name='check' />
                             Contacted
                         </Button>

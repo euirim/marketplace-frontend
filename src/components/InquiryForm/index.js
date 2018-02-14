@@ -33,7 +33,13 @@ export default class InquiryForm extends React.Component {
                     <TextArea field="msg" id="msg" />
                 </div>
 
-                <button className="ui button" type="submit">Submit</button>
+                <button 
+                    className="ui button g-recaptcha" 
+                    type="submit"
+                    data-sitekey="6Lc2PkYUAAAAAMPuGU655s-wI-0xjn60GyjDOwc3"
+                >
+                    Submit
+                </button>
             </form>
         );
 

@@ -162,7 +162,13 @@ export default class AddListingForm extends React.Component {
                     </Dropzone>
                 </div>
 
-                <Button type="submit">Submit</Button>
+                <Button 
+                    type="submit"
+                    className="g-recaptcha"
+                    data-sitekey="6Lc2PkYUAAAAAMPuGU655s-wI-0xjn60GyjDOwc3"
+                >
+                    Submit
+                </Button>
             </form>
         );
 
