@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Form, Text, Select, TextArea } from 'react-form';
+import { Form, Text, Select, TextArea } from "react-form";
 import { Button, Container, Header, Grid, Message } from "semantic-ui-react";
-import Recaptcha from "react-recaptcha";
+import Recaptcha from "react-google-invisible-recaptcha";
 
 import { Redirect } from "react-router-dom";
 
@@ -14,7 +14,8 @@ export default class InquiryForm extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleRecaptcha = this.handleRecaptcha.bind(this);
+        this.onSubmit = this.onSubmit.bind(this); // for recaptcha
+        this.onResolved = this.onResolved.bind(this); // for recaptcha
         this.state = {};
     }
 
@@ -34,32 +35,37 @@ export default class InquiryForm extends React.Component {
             });
     }
 
-    handleRecaptcha(response) {
-        alert("HELLO");
-        this.setState({ recaptchaToken: response });
-        document.getElementById("inquiryForm").submit();
+    onSubmit() {
+        // manually trigger reCAPTCHA execution
+        this.recaptcha.execute();
+        console.log("wow");
+    };
+
+    onResolved() {
+        this.setState({ recaptchaToken: this.recaptcha.getResponse() });
+        console.log(this.state.recaptchaToken);
+        // below line essential to trigger onSubmit on the form.
+        // simple submit does not work.
+        document.getElementById("inquiryForm").dispatchEvent(new Event("submit")); 
     }
 
     render() {
-        // manually trigger reCAPTCHA execution
-        const executeCaptcha = function () {
-            captcha.execute();
-            console.log("wow");
-            this.setState({ recaptchaToken: captcha.getResponse() });
-        };
-
         const FormContent = props => (
-            <form id="inquiryForm" className="ui form" onSubmit={props.formApi.submitForm}>
+            <form 
+                id="inquiryForm" 
+                className="ui form" 
+                onSubmit={props.formApi.submitForm}
+            >
                 <div className="field required">
                     <TextArea field="msg" id="msg" />
                 </div>
 
-                <Button onClick={executeCaptcha}>Submit</Button>
+                <div className="ui button" onClick={this.onSubmit}>Submit</div>
 
                 <Recaptcha
-                    rel={ el => captcha = el }
-                    size="invisible"
+                    ref={ el => this.recaptcha = el }
                     sitekey="6Lc2PkYUAAAAAMPuGU655s-wI-0xjn60GyjDOwc3"
+                    onResolved={ this.onResolved }
                 />
             </form>
         );
@@ -75,9 +81,12 @@ export default class InquiryForm extends React.Component {
         }
         else {
             return (
+                <div>
                 <Form 
                     onSubmit={this.handleSubmit}
                     component={FormContent} />
+
+                </div>
             );
         }
     }
