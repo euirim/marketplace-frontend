@@ -6,7 +6,8 @@ import {
     Grid, 
     Modal, 
     Button,
-    Icon
+    Icon,
+    Message
 } from "semantic-ui-react";
 import ShowMoreText from 'react-show-more-text';
 import ImageGallery from 'react-image-gallery';
@@ -78,9 +79,30 @@ export default class ListingDetail extends React.Component {
                 );
             };
 
+            const InquiryMessage = () => {
+                if (this.state.contacted) {
+                    return (
+                        <Grid.Row>
+                            <Grid.Column width={16}>
+                                <Message
+                                    icon="check circle outline"
+                                    header="Inquiry sent."
+                                    content="Please wait for the poster of this listing to respond."
+                                    positive
+                                />
+                            </Grid.Column>
+                        </Grid.Row>
+                    );
+                } else {
+                    return null;
+                }
+            }
+
             content = (
                 <Container style={{ paddingTop: '5em' }}>
                     <Grid stackable>
+                        <InquiryMessage/>
+
                         <Grid.Row>
                             <Grid.Column width={9}>
                                 <ImageGallery items={images} />
