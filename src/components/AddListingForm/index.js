@@ -6,6 +6,7 @@ import { Form, Text, Select, TextArea } from "react-form";
 import { Button, Container, Header, Grid, List, Dropdown } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import Dropzone from "react-dropzone";
+import Recaptcha from "react-google-invisible-recaptcha";
 
 import ListingService from "services/api/listing.js";
 import PhotoService from "services/api/photo.js";
@@ -34,6 +35,8 @@ export default class AddListingForm extends React.Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.checkFiles = this.checkFiles.bind(this);
+        this.onSubmit = this.onSubmit.bind(this); // for recaptcha
+        this.onResolved = this.onResolved.bind(this); // for recaptcha
         this.state = { files: [], file_ids: [], fileErrorCode: 0 };
     }
 
@@ -95,6 +98,19 @@ export default class AddListingForm extends React.Component {
         }
     }
 
+    onSubmit() {
+        // manually trigger reCAPTCHA execution
+        this.recaptcha.execute();
+    };
+
+    onResolved() {
+        this.setState({ recaptchaToken: this.recaptcha.getResponse() });
+        console.log(this.state.recaptchaToken);
+        // below line essential to trigger onSubmit on the form.
+        // simple submit does not work.
+        document.getElementById("addListingForm").dispatchEvent(new Event("submit")); 
+    }
+
     render() {
         var DropzoneMsg; 
 
@@ -115,7 +131,12 @@ export default class AddListingForm extends React.Component {
         }
 
         const FormContent = props => (
-            <form className="ui form" encType="multipart/form-data" onSubmit={props.formApi.submitForm}>
+            <form 
+                id="addListingForm"
+                className="ui form" 
+                encType="multipart/form-data" 
+                onSubmit={props.formApi.submitForm}
+            >
                 <div className="field required">
                     <label>Your name</label>
                     <Text field="name" id="name" className="ui input" placeholder="Name" required />
@@ -145,9 +166,14 @@ export default class AddListingForm extends React.Component {
                     <p>{ props.formApi.errors.price }</p>
                 </div>
 
+                {/* Upload files */}
                 <div className="field required">
                     <label>Photos</label>
-                    <Dropzone onDrop={this.onDrop.bind(this)} accept="image/*" className="fluid" required>
+                    <Dropzone 
+                        onDrop={this.onDrop.bind(this)} 
+                        accept="image/*" 
+                        className="fluid" required
+                    >
                         <DropzoneMsg />
 
                         <List as='ol'>
@@ -162,13 +188,13 @@ export default class AddListingForm extends React.Component {
                     </Dropzone>
                 </div>
 
-                <Button 
-                    type="submit"
-                    className="g-recaptcha"
-                    data-sitekey="6Lc2PkYUAAAAAMPuGU655s-wI-0xjn60GyjDOwc3"
-                >
-                    Submit
-                </Button>
+                <div className="ui button" onClick={this.onSubmit}>Submit</div>
+
+                <Recaptcha
+                    ref={ el => this.recaptcha = el }
+                    sitekey="6Lc2PkYUAAAAAMPuGU655s-wI-0xjn60GyjDOwc3"
+                    onResolved={ this.onResolved }
+                />
             </form>
         );
 

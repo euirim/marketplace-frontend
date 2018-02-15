@@ -38,7 +38,6 @@ export default class InquiryForm extends React.Component {
     onSubmit() {
         // manually trigger reCAPTCHA execution
         this.recaptcha.execute();
-        console.log("wow");
     };
 
     onResolved() {
