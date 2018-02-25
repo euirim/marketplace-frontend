@@ -4,7 +4,7 @@ var config = {
   entry: "./src/index.js",
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "../backend/market/assets")
+    path: path.resolve(__dirname, "../backend/market/static")
   },
   devServer: {
     inline: true,
