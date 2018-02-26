@@ -6,4 +6,5 @@ npm run build
 cd src/semantic
 gulp build
 cd ../..
+cp -r dist/css ../backend/market/static
 cp -r dist/css ../backend/market/assets
