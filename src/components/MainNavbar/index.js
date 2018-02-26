@@ -37,7 +37,7 @@ export default class MainNavbar extends React.Component {
 
         return (
             <Menu fixed="top" borderless>
-                <Menu.Item as={Link} to="/" header>
+                <Menu.Item as={Link} to="/">
                     <img src={S3_URL + "/images/logo.svg"} />
                 </Menu.Item>
                 { userStatusIndicator }
