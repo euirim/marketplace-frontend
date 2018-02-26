@@ -2,4 +2,6 @@
     User Variable Overrides
 *******************************/
 
+@boxShadow: none; // shadow of navbar
+
 @imageWidth: 200px;
