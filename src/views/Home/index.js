@@ -33,7 +33,6 @@ export default class Home extends React.Component {
                                 <Menu.Item name="Jobs">JOBS</Menu.Item>
                                 <Menu.Item name="Services">SERVICES</Menu.Item>
                             </Menu>
-                            <Header as="h2">Homes</Header>
                         </Grid.Column>
                     </Grid.Row>
 
