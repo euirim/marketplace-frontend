@@ -4,8 +4,8 @@
   "description": "Frontend for The Chicago Maroon's marketplace. ",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --env.NODE_ENV=dev",
-    "build_prod": "webpack --env.NODE_ENV=prod",
+    "build": "export NODE_ENV=dev && webpack",
+    "build_prod": "export NODE_ENV=prod && webpack",
     "start": "webpack-dev-server --hot --content-base=dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
