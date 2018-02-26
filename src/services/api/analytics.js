@@ -1,7 +1,7 @@
 function recordPageVisit() {
     window.fbAsyncInit = function() {
         FB.init({
-            appId      : '175852563003044',
+            appId      : FB_APP_ID,
             cookie     : true,
             xfbml      : true,
             version    : 'v2.11'
