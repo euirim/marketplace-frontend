@@ -17,7 +17,7 @@ import constants from "shared/constants"
  */
 const client = axios.create({
   // baseURL: constants.api.url
-  baseURL: "http://localhost/"
+  baseURL: API_URL
 });
 
 

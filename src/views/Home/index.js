@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Header, Grid } from "semantic-ui-react";
+import { Container, Header, Grid, Menu } from "semantic-ui-react";
 
 import ListingCardGrid from "containers/ListingCardGrid";
 import ListingService from "services/api/listing.js";
@@ -27,24 +27,17 @@ export default class Home extends React.Component {
                 <Grid stackable>
                     <Grid.Row>
                         <Grid.Column>
-                            <Header as="h2">Homes</Header>
+                            <Menu text>
+                                <Menu.Item header>ALL</Menu.Item>
+                                <Menu.Item name="For Sale">FOR SALE</Menu.Item>
+                                <Menu.Item name="Jobs">JOBS</Menu.Item>
+                                <Menu.Item name="Services">SERVICES</Menu.Item>
+                            </Menu>
                         </Grid.Column>
                     </Grid.Row>
 
                     <ListingCardGrid listings={this.state.homes_listings}>
                     </ListingCardGrid>
-
-                    <Grid.Row>
-                        <Grid.Column>
-                            <Header as="h2">Appliances</Header>
-                        </Grid.Column>
-                    </Grid.Row>
-
-                    <Grid.Row>
-                        <Grid.Column>
-                            <Header as="h2">Services</Header>
-                        </Grid.Column>
-                    </Grid.Row>
                 </Grid>
             </Container>
         );
