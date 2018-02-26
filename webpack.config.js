@@ -1,16 +1,16 @@
-var webpack = require('webpack');
+var webpack = require("webpack");
 const path = require("path");
 
 var devSettings = {
-  bundleName: JSON.stringify("bundle_dev.js"),
-  apiURL: JSON.stringify("http://localhost/"),
-  fbLoginID: JSON.stringify("822489027938447")
+  bundleName: "bundle_dev.js",
+  apiURL: "http://localhost/",
+  fbLoginID: "822489027938447"
 };
 
 var prodSettings = {
-  bundleName: JSON.stringify("bundle_prod.js"),
-  apiURL: JSON.stringify("http://marketplace-staging.us-east-2.elasticbeanstalk.com/"),
-  fbAppID: JSON.stringify("175852563003044"),
+  bundleName: "bundle_prod.js",
+  apiURL: "http://marketplace-staging.us-east-2.elasticbeanstalk.com/",
+  fbAppID: "175852563003044"
 };
 
 // Alter settings based on NODE_ENV variable passed in
