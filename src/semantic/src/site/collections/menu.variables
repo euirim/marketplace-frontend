@@ -4,4 +4,5 @@
 
 @boxShadow: none; // shadow of navbar
 
-@imageWidth: 200px;
+@imageMargin: 0;
+@imageWidth: 225px;

@@ -4,7 +4,13 @@ import {
     Link
 } from "react-router-dom";
 
-import { Menu, Header, Dropdown, Icon } from "semantic-ui-react";
+import { 
+    Menu, 
+    Header, 
+    Dropdown, 
+    Icon,
+    Button
+} from "semantic-ui-react";
 import AuthService from "services/api/auth.js";
 
 export default class MainNavbar extends React.Component {
@@ -29,14 +35,14 @@ export default class MainNavbar extends React.Component {
             userStatusIndicator = (
                 <Menu.Menu position="right">
                     <Menu.Item as={Link} to="/login">
-                        Login
+                        <Button basic color="blue">Login</Button>
                     </Menu.Item>
                 </Menu.Menu>
             );
         }
 
         return (
-            <Menu fixed="top" borderless>
+            <Menu fixed="top" size="large" borderless>
                 <Menu.Item as={Link} to="/">
                     <img src={S3_URL + "/images/logo.svg"} />
                 </Menu.Item>
