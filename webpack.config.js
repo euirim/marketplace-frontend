@@ -5,7 +5,7 @@ var devSettings = {
   bundleName: "bundle_dev.js",
   apiURL: "http://localhost/",
   fbAppID: "822489027938447",
-  s3URL: ""
+  s3URL: "/static"
 };
 
 var prodSettings = {
