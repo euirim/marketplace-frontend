@@ -1,3 +1,6 @@
 /*******************************
      User Global Variables
 *******************************/
+
+@headerFont : "Verlag A", "Verlag B", Futura, "Helvetica Neue", Helvetica, Arial, sans-serif;
+@pageFont : "Chronicle Text G2 A", "Chronicle Text G2 B", Georgia, "Times New Roman", serif;
