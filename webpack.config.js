@@ -4,7 +4,7 @@ const path = require("path");
 var devSettings = {
   bundleName: "bundle_dev.js",
   apiURL: "http://localhost/",
-  fbLoginID: "822489027938447"
+  fbAppID: "822489027938447"
 };
 
 var prodSettings = {
@@ -35,7 +35,7 @@ var config = {
   plugins: [
     new webpack.DefinePlugin({
       "API_URL": JSON.stringify(settings.apiURL),
-      "FB_APP_ID": settings.fbAppID
+      "FB_APP_ID": JSON.stringify(settings.fbAppID)
     })
   ],
   module: {
