@@ -13,3 +13,13 @@
 
 /* Additional Content */
 @extraPadding: 1em 0;
+
+/*-------------------
+      Variations
+--------------------*/
+
+@linkHoverRaiseDistance: 15px;
+@linkHoverBorder: none;
+@linkHoverBackground: none;
+@shadowHoverBoxShadow: none;
+@linkHoverBoxShadow: none;
