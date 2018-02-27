@@ -6,3 +6,7 @@
 
 @imageMargin: 0;
 @imageWidth: 225px;
+
+// Text
+@textMenuItemColor: @black;
+@textMenuItemFontWeight: bold;

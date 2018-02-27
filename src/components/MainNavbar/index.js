@@ -24,8 +24,8 @@ export default class MainNavbar extends React.Component {
                     </Menu.Item>
                     <Dropdown item icon="setting">
                         <Dropdown.Menu>
-                            <Dropdown.Item as={Link} to="/profile">My Listings</Dropdown.Item>
-                            <Dropdown.Item as={Link} to="/logout">Log Out</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/profile">MY LISTINGS</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/logout">LOG OUT</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Menu.Menu>
@@ -34,15 +34,15 @@ export default class MainNavbar extends React.Component {
         else {
             userStatusIndicator = (
                 <Menu.Menu position="right">
-                    <Menu.Item as={Link} to="/login">
-                        <Button basic color="blue">Login</Button>
+                    <Menu.Item>
+                        <Button as={Link} to="/login" basic>LOGIN</Button>
                     </Menu.Item>
                 </Menu.Menu>
             );
         }
 
         return (
-            <Menu fixed="top" size="large" borderless>
+            <Menu fixed="top" size="small" borderless>
                 <Menu.Item as={Link} to="/">
                     <img src={S3_URL + "/images/logo.svg"} />
                 </Menu.Item>
