@@ -1,5 +1,11 @@
 import React from "react";
-import { Container, Header, Grid, Menu } from "semantic-ui-react";
+import { 
+    Container, 
+    Header, 
+    Grid, 
+    Menu, 
+    Icon 
+} from "semantic-ui-react";
 
 import ListingCardGrid from "containers/ListingCardGrid";
 import ListingService from "services/api/listing.js";
@@ -32,6 +38,10 @@ export default class Home extends React.Component {
                                 <Menu.Item name="For Sale">FOR SALE</Menu.Item>
                                 <Menu.Item name="Jobs">JOBS</Menu.Item>
                                 <Menu.Item name="Services">SERVICES</Menu.Item>
+                                <Menu.Menu position="right">
+                                    <Menu.Item name="Filter">FILTER</Menu.Item> 
+                                    <Menu.Item name="Search"><Icon name="search" /></Menu.Item> 
+                                </Menu.Menu>
                             </Menu>
                         </Grid.Column>
                     </Grid.Row>
