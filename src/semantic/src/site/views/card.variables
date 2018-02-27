@@ -1,3 +1,15 @@
 /*******************************
     User Variable Overrides
 *******************************/
+
+// Shadow
+@shadowBoxShadow: none;
+
+/*-------------------
+       Content
+--------------------*/
+
+@contentPadding: 1em 0;
+
+/* Additional Content */
+@extraPadding: 1em 0;
