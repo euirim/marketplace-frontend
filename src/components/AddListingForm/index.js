@@ -10,6 +10,7 @@ import Recaptcha from "react-google-invisible-recaptcha";
 
 import ListingService from "services/api/listing.js";
 import PhotoService from "services/api/photo.js";
+import CategoryService from "services/api/category.js";
 
 const categoryOptions = [
     {
@@ -37,7 +38,33 @@ export default class AddListingForm extends React.Component {
         this.checkFiles = this.checkFiles.bind(this);
         this.onSubmit = this.onSubmit.bind(this); // for recaptcha
         this.onResolved = this.onResolved.bind(this); // for recaptcha
-        this.state = { files: [], file_ids: [], fileErrorCode: 0 };
+        this.state = { 
+            files: [], 
+            file_ids: [], 
+            fileErrorCode: 0,
+            categoryOptions: []
+        };
+    }
+
+    componentDidMount() {
+        // Get options for categories
+        CategoryService
+            .get_all()
+            .then(res => {
+                for (let i=0; i < res.length; i++) {
+                    this.state.categoryOptions.push(
+                        {
+                            label: res[i].name,
+                            value: res[i].id
+                        }
+                    );
+
+                    this.setState({ 
+                        categoryOptions: this.state.categoryOptions 
+                    });
+                }
+            });
+
     }
 
     checkFiles(files) {
@@ -152,7 +179,7 @@ export default class AddListingForm extends React.Component {
                     <Select 
                         field="category" 
                         id="category" 
-                        options={categoryOptions} 
+                        options={this.state.categoryOptions} 
                         className="ui selection dropdown" required /> 
                 </div>
 

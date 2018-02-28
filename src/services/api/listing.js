@@ -11,7 +11,7 @@ function get(id) {
 
 function get_most_recent(num) {
     return request({
-        url: `/listings.json`,
+        url: `/listings/?format=json`,
         method: "GET"
     });
 }
@@ -25,7 +25,7 @@ function get_my_listings(num) {
 
 function put(data) {
     return request({
-        url: `/listings.json`,
+        url: `/listings/?format=json`,
         method: "PUT",
         headers: {
             "X-CSRFToken": Cookies.get("csrftoken")
