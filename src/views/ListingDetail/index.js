@@ -33,7 +33,7 @@ export default class ListingDetail extends React.Component {
         ListingService
             .get(this.props.match.params.id)
             .then(res => {
-                this.setState({ listing: res[0] });
+                this.setState({ listing: res });
             });
     }
 
