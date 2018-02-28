@@ -16,7 +16,17 @@ export default class ListingCard extends React.Component {
     render(){
         return (
             <Card as={ Link } to={ "/listings/" + this.props.id } color="red" centered>
-                <Image label={{ as: "a", content: this.props.category.name, attached: "top right", color: "red", className: "uppercase" }} src={ this.props.photo }></Image>
+                <Image 
+                    label={
+                        { 
+                            as: "a", 
+                            content: this.props.category.name, 
+                            attached: "top right", 
+                            color: this.props.category.color
+                        }
+                    } 
+                    src={ this.props.photo }>
+                </Image>
 
                 <Card.Content extra>
                     <Card.Content className="right floated">
