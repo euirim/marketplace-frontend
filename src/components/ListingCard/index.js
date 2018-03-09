@@ -12,6 +12,8 @@ import {
     Header
 } from 'semantic-ui-react';
 
+import URLService from "services/urls/index.js"
+
 export default class ListingCard extends React.Component {
     render(){
         return (
@@ -25,7 +27,7 @@ export default class ListingCard extends React.Component {
                             color: this.props.category.color
                         }
                     } 
-                    src={ this.props.photo }>
+                    src={ URLService.genMediaURL(this.props.photo) }>
                 </Image>
 
                 <Card.Content extra>

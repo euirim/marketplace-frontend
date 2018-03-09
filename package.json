@@ -6,7 +6,7 @@
     "scripts": {
         "build": "export NODE_ENV=dev && webpack",
         "build_prod": "export NODE_ENV=prod && webpack",
-        "start": "webpack-dev-server --hot --content-base=dist",
+        "start": "export NODE_ENV=dev && webpack-dev-server --hot --content-base=dist",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
