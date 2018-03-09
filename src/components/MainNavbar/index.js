@@ -12,6 +12,7 @@ import {
     Button
 } from "semantic-ui-react";
 import AuthService from "services/api/auth.js";
+import URLService from "services/urls/index.js";
 
 export default class MainNavbar extends React.Component {
     render() {
@@ -44,7 +45,7 @@ export default class MainNavbar extends React.Component {
         return (
             <Menu fixed="top" size="small" borderless>
                 <Menu.Item as={Link} to="/">
-                    <img src={S3_URL + "/images/logo.svg"} />
+                    <img src={URLService.genStaticURL("/images/logo.svg")} />
                 </Menu.Item>
                 { userStatusIndicator }
             </Menu>
