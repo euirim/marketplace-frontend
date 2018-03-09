@@ -24,8 +24,7 @@ var config = {
   entry: "./src/index.js",
   output: {
     filename: settings.bundleName,
-    path: path.resolve(__dirname, "dist")
-    // path: path.resolve(__dirname, "../backend/market/static")
+    path: path.resolve(__dirname, "../backend/market/static")
   },
   devServer: {
     inline: true,
