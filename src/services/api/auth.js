@@ -116,7 +116,7 @@ function handleClick() {
             if (res.authResponse) {
                 checkLogin();
             }
-        });
+        }, {scope: 'email,public_profile'});
 }
 
 // checks for authentication cookie. Should only be used
