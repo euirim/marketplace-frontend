@@ -4,6 +4,7 @@
 
 import Cookies from "js-cookie";
 import request from "shared/lib/request";
+import URLService from "services/urls"
 
 // handles response from Facebook SDK
 function statusChangeCallback(response) {
@@ -12,7 +13,7 @@ function statusChangeCallback(response) {
         // Logged into your app and Facebook.
         // POST API call to rest-auth
         var msg = {
-            url: "/rest-auth/facebook/",
+            url: URLService.genSiteURL("/rest-auth/facebook/"),
             method: "POST", 
             data: {
                 access_token: response.authResponse.accessToken,
@@ -56,7 +57,7 @@ function checkLogin() {
 
 function getLoginStatus() {
     var response = request({
-        url: "/rest-auth/status",
+        url: URLService.genSiteURL("/rest-auth/status"),
         method: "GET",
     })
 
@@ -65,7 +66,7 @@ function getLoginStatus() {
 
 function logout() {
     var msg = {
-        url: "/rest-auth/logout/",
+        url: URLService.genSiteURL("/rest-auth/logout/"),
         method: "POST",
         headers: {
             "X-CSRFToken": Cookies.get("csrftoken")

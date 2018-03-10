@@ -1,3 +1,7 @@
+function genSiteURL(path) {
+    return ROOT_URL + path;
+}
+
 function genMediaURL(path) {
     return ROOT_URL + path;
 }
@@ -7,6 +11,7 @@ function genStaticURL(path) {
 }
 
 const URLService = {
+    genSiteURL,
     genMediaURL,
     genStaticURL
 };

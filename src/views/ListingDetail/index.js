@@ -13,6 +13,7 @@ import ShowMoreText from 'react-show-more-text';
 import ImageGallery from 'react-image-gallery';
 
 import ListingService from "services/api/listing.js";
+import URLService from "services/urls";
 import InquiryForm from "components/InquiryForm";
 
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -49,8 +50,8 @@ export default class ListingDetail extends React.Component {
             
             for (var i=0; i < this.state.listing.photos.length; i++) {
                 images.push({
-                    original: this.state.listing.photos[i],
-                    thumbnail: this.state.listing.photos[i]
+                    original: URLService.genMediaURL(this.state.listing.photos[i]),
+                    thumbnail: URLService.genMediaURL(this.state.listing.photos[i])
                 });
             }
 
