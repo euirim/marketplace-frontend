@@ -5,6 +5,12 @@
 // Shadow
 @shadowBoxShadow: none;
 
+// Transition
+@transition:
+  box-shadow 0.3s @defaultEasing,
+  transform 0.3s @defaultEasing
+;
+
 /*-------------------
        Content
 --------------------*/
