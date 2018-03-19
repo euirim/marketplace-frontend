@@ -29,7 +29,7 @@ export default class ListingCardGrid extends React.Component {
                 photo={ listing.photos[0] } />
         );
         return (
-            <Card.Group itemsPerRow={3} doubling stackable>
+            <Card.Group itemsPerRow={3} doubling stackable centered>
                 { listings }
             </Card.Group>
         );

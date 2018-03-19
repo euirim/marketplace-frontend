@@ -17,7 +17,7 @@ import URLService from "services/urls/index.js"
 export default class ListingCard extends React.Component {
     render(){
         return (
-            <Card as={ Link } to={ "/listings/" + this.props.id } color="red" centered>
+            <Card as={ Link } to={ "/listings/" + this.props.id } color="red" centered fluid>
                 <Image 
                     label={
                         { 

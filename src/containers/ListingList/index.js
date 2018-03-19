@@ -59,7 +59,7 @@ export default class ListingList extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{ width: "100%" }}>
                 <ListingFilterNav 
                     handler={this.handleCategoryUpdate} 
                     categories={this.state.categories}
