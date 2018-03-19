@@ -7,7 +7,7 @@ import {
     Icon 
 } from "semantic-ui-react";
 
-import ListingCardGrid from "containers/ListingCardGrid";
+import ListingList from "containers/ListingList";
 import ListingService from "services/api/listing.js";
 
 export default class Home extends React.Component {
@@ -32,22 +32,9 @@ export default class Home extends React.Component {
             <Container style={{ paddingTop: '5em' }}>
                 <Grid stackable>
                     <Grid.Row>
-                        <Grid.Column>
-                            <Menu text>
-                                <Menu.Item header>ALL</Menu.Item>
-                                <Menu.Item name="For Sale">FOR SALE</Menu.Item>
-                                <Menu.Item name="Jobs">JOBS</Menu.Item>
-                                <Menu.Item name="Services">SERVICES</Menu.Item>
-                                <Menu.Menu position="right">
-                                    <Menu.Item name="Filter">FILTER</Menu.Item> 
-                                    <Menu.Item name="Search"><Icon name="search" /></Menu.Item> 
-                                </Menu.Menu>
-                            </Menu>
-                        </Grid.Column>
+                        <ListingList listings={this.state.homes_listings}>
+                        </ListingList>
                     </Grid.Row>
-
-                    <ListingCardGrid listings={this.state.homes_listings}>
-                    </ListingCardGrid>
                 </Grid>
             </Container>
         );

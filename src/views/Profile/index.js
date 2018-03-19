@@ -7,7 +7,7 @@ import {
 import AuthService from "services/api/auth.js";
 import ListingService from "services/api/listing.js";
 
-import ListingCardGrid from "containers/ListingCardGrid";
+import ListingCardGrid from "components/ListingCardGrid";
 
 export default class Profile extends React.Component {
     constructor(props) {

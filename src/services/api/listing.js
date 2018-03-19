@@ -5,7 +5,7 @@ import request from "shared/lib/request";
 function get(id) {
     return request({
         url: `/listings/${id}.json`,
-        method: "GET" 
+        method: "GET",
     });
 }
 
@@ -20,6 +20,14 @@ function get_my_listings(num) {
     return request({
         url: `/listings/user.json`,
         method: "GET"
+    });
+}
+
+function filter(params) {
+    return request({
+        url: `/listings/?format=json`,
+        method: "GET",
+        params: params
     });
 }
 
@@ -38,7 +46,8 @@ const ListingService = {
     get, 
     get_most_recent,
     get_my_listings,
-    put
+    put,
+    filter
 };
 
 export default ListingService;

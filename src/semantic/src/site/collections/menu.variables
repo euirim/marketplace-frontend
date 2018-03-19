@@ -10,4 +10,4 @@
 // Text
 @textMenuMargin: 0 -(@textMenuItemSpacing);
 @textMenuItemColor: @black;
-@textMenuItemFontWeight: bold;
+@textMenuActiveItemFontWeight: bold;

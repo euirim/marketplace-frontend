@@ -18,16 +18,8 @@ export default class ListingCardGrid extends React.Component {
         this.setState({listings: this.props.listings});
     }
 
-    componentWillReceiveProps(nextProps) {
-        // updates if current state is empty
-        // for props promises
-        if (this.state.listings.length == 0) {
-            this.setState({listings: nextProps.listings});
-        }
-    }
-
     render() {
-        var listings = this.state.listings.map((listing) => 
+        var listings = this.props.listings.map((listing) => 
             <ListingCard 
                 key={ listing.id } 
                 id={ listing.id }
@@ -37,7 +29,7 @@ export default class ListingCardGrid extends React.Component {
                 photo={ listing.photos[0] } />
         );
         return (
-            <Card.Group itemsPerRow={3}>
+            <Card.Group itemsPerRow={3} doubling stackable>
                 { listings }
             </Card.Group>
         );
