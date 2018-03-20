@@ -36,7 +36,7 @@ export default class ListingFilterNav extends React.Component {
         }
 
         return (
-            <Menu text>
+            <Menu text className="listing-filter-nav">
                 <Menu.Item
                     active={ this.props.activeCategory === -1}
                     onClick={() => this.props.handler(-1)}>

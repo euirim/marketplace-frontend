@@ -18,4 +18,10 @@
     Base Sizes
 --------------------*/
 @emSize      : 16px;
-@fontSize    : 16px;
+@fontSize    : 18px;
+
+/*-------------------
+        Page
+--------------------*/
+
+@pageBackground      : rgba(0, 0, 40, 0.05);

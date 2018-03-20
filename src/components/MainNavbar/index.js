@@ -19,7 +19,7 @@ export default class MainNavbar extends React.Component {
         var userStatusIndicator;
         if (AuthService.isAuthenticated()) {
             userStatusIndicator = (
-                <Menu.Menu position="right">
+                <Menu.Menu position="right" id="mainNavbar">
                     <Menu.Item as={Link} to="/profile">
                         <Icon name="user"/> { this.props.profile.firstName }
                     </Menu.Item>
