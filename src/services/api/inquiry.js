@@ -4,7 +4,7 @@ import request from "shared/lib/request";
 
 function put(data) {
     return request({
-        url: `/inquiries/send/`,
+        url: `/api/inquiries/send/`,
         method: "PUT",
         headers: {
             "X-CSRFToken": Cookies.get("csrftoken")

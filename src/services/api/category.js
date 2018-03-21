@@ -2,7 +2,7 @@ import request from "shared/lib/request";
 
 function get_all() {
     return request({
-        url: `/categories/?format=json`,
+        url: `/api/categories/?format=json`,
         method: "GET" 
     });
 }

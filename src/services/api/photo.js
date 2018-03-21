@@ -4,7 +4,7 @@ import request from "shared/lib/request";
 // function uploadPhoto(file):
 function put(file) {
     return request({
-        url: `/photos/upload/${file.name}`,
+        url: `/api/photos/upload/${file.name}`,
         method: "PUT",
         headers: {
             "X-CSRFToken": Cookies.get("csrftoken")
