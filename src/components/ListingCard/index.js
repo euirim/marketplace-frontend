@@ -9,7 +9,8 @@ import {
     Image,
     Segment,
     Label,
-    Header
+    Header,
+    Icon
 } from 'semantic-ui-react';
 
 import URLService from "services/urls/index.js"
@@ -30,15 +31,14 @@ export default class ListingCard extends React.Component {
                     src={ URLService.genMediaURL(this.props.photo) }>
                 </Image>
 
-                <Card.Content extra>
-                    <Card.Content className="right floated">
-                        <div className="listing-card-price-label">
-                            <Header textAlign="right" sub>Price</Header>
-                            <strong>$ { this.props.price }</strong>
-                        </div>
-                    </Card.Content>
+                <Card.Content>
                     <Card.Header disabled>
                         <span className="listing-card-header">{ this.props.name }</span>
+                    </Card.Header>
+                </Card.Content>
+                <Card.Content extra>
+                    <Card.Header>
+                        <Icon name="dollar" disabled fitted /> { this.props.price }
                     </Card.Header>
                 </Card.Content>
             </Card>

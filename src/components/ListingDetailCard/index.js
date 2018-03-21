@@ -3,7 +3,9 @@ import {
     Card, 
     Label,
     Header,
-    Icon
+    Icon,
+    Button,
+    List
 } from 'semantic-ui-react';
 
 import ShowMoreText from 'react-show-more-text';
@@ -18,6 +20,13 @@ export default class ListingDetailCard extends React.Component {
     }
 
     render() {
+        const priceLabel = {
+            basic: true, 
+            color: 'red', 
+            pointing: 'right', 
+            content: "$ " + this.props.listing.price
+        };
+
         return (
             <Card fluid>
                 <Card.Content>
@@ -35,12 +44,12 @@ export default class ListingDetailCard extends React.Component {
                 </Card.Content>
 
                 <Card.Content>
-                    <Card.Header>
-                        <Icon disabled name="dollar"/>
-                        { this.props.listing.price }
-                    </Card.Header>
-                    
-                    { this.props.modal }
+                    <Button
+                        color='red'
+                        content='CONTACT'
+                        icon='mail'
+                        label={priceLabel}
+                        labelPosition="left" />
                 </Card.Content>
 
                 <Card.Content>
