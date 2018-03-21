@@ -12,7 +12,8 @@ var devSettings = {
 var prodSettings = {
   bundleName: "bundle_prod.js",
   apiURL: "http://marketplace-staging.us-east-2.elasticbeanstalk.com/",
-  rootURL: "http://marketplace-staging.us-east-2.elasticbeanstalk.com",
+  rootURL: "",
+  // rootURL: "http://marketplace-staging.us-east-2.elasticbeanstalk.com",
   fbAppID: "175852563003044",
   s3URL: "https://s3.us-east-2.amazonaws.com/maroon-marketplace"
 };
