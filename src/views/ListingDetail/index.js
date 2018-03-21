@@ -9,11 +9,11 @@ import {
     Icon,
     Message
 } from "semantic-ui-react";
-import ShowMoreText from 'react-show-more-text';
 import ImageGallery from 'react-image-gallery';
 
 import ListingService from "services/api/listing.js";
 import URLService from "services/urls";
+import ListingDetailCard from "components/ListingDetailCard";
 import InquiryForm from "components/InquiryForm";
 
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -109,18 +109,7 @@ export default class ListingDetail extends React.Component {
                                 <ImageGallery items={images} />
                             </Grid.Column>
                             <Grid.Column width={7}>
-                                <p>{ this.state.listing.category.name }</p>
-
-                                <Header as="h1">{ this.state.listing.name }</Header>
-                                <Header as="h3">${ this.state.listing.price }</Header>
-
-                                <ShowMoreText
-                                    lines={5}
-                                >
-                                    <p>{ this.state.listing.about }</p>
-                                </ShowMoreText>
-
-                                <ContactModal/>
+                                <ListingDetailCard listing={this.state.listing} modal={ContactModal} />
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
