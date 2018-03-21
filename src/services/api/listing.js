@@ -33,7 +33,7 @@ function filter(params) {
 
 function put(data) {
     return request({
-        url: `/listings/?format=json`,
+            url: `/listings/new/?format=json`,
         method: "PUT",
         headers: {
             "X-CSRFToken": Cookies.get("csrftoken")
