@@ -36,7 +36,7 @@ export default class MainNavbar extends React.Component {
             userStatusIndicator = (
                 <Menu.Menu position="right">
                     <Menu.Item>
-                        <Button as={Link} to="/login" basic>LOGIN</Button>
+                        <Button as={Link} to="/login" basic>LOG IN</Button>
                     </Menu.Item>
                 </Menu.Menu>
             );

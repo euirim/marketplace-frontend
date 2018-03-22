@@ -1,9 +1,17 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-import { Button, Header, Icon, Container, Grid } from "semantic-ui-react";
+import { 
+    Button, 
+    Header, 
+    Icon, 
+    Container, 
+    Grid,
+    Card
+} from "semantic-ui-react";
 
 import AuthService from "services/api/auth.js";
+import LoginPanel from "components/LoginPanel";
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -39,12 +47,9 @@ export default class Login extends React.Component {
         return (
             <Container style={{ paddingTop: '5em' }}>
                 <Grid stackable>
-                    <Grid.Row>
-                        <Grid.Column>
-                            <Header as="h2">Login</Header>
-                            <Button onClick={ AuthService.handleClick } color="facebook">
-                                <Icon name="facebook" /> Login with Facebook
-                            </Button>
+                    <Grid.Row centered>
+                        <Grid.Column computer={6} tablet={10} mobile={16}>
+                            <LoginPanel />
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
