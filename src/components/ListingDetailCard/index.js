@@ -54,8 +54,12 @@ export default class ListingDetailCard extends React.Component {
 
                 <Card.Content>
                     <Card.Description>
-                        <ShowMoreText lines={5}> 
-                            <p>{ this.props.listing.about }</p>
+                        <ShowMoreText 
+                            lines={5}> 
+
+                            {this.props.listing.about.split("\n").map(i => {
+                                return <p>{i}</p>;
+                            })}
                         </ShowMoreText>
                     </Card.Description>
                 </Card.Content>

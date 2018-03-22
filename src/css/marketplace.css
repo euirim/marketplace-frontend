@@ -14,3 +14,16 @@
 .listing-card-header {
     font-weight: 400;
 }
+
+/* Footer */
+#footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-bottom: 10px;
+}
+
+#footer p {
+    font-size: 14px;
+    line-height: 8px;
+    color: rgba(0,0,0,0.6)
+}

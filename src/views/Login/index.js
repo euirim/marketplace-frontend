@@ -12,6 +12,7 @@ import {
 
 import AuthService from "services/api/auth.js";
 import LoginPanel from "components/LoginPanel";
+import CentralPanel from "components/CentralPanel";
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -45,15 +46,9 @@ export default class Login extends React.Component {
         }
 
         return (
-            <Container style={{ paddingTop: '5em' }}>
-                <Grid stackable>
-                    <Grid.Row centered>
-                        <Grid.Column computer={6} tablet={10} mobile={16}>
-                            <LoginPanel />
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-            </Container>
-        )
+            <CentralPanel>
+                <LoginPanel />
+            </CentralPanel>
+        );
     }
 }
