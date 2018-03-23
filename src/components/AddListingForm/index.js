@@ -3,7 +3,16 @@ import axios from "axios";
 import React from "react";
 
 import { Form, Text, Select, TextArea } from "react-form";
-import { Button, Container, Header, Grid, List, Dropdown } from "semantic-ui-react";
+import { 
+    Button, 
+    Container, 
+    Header, 
+    Grid, 
+    List, 
+    Dropdown,
+    Dimmer,
+    Loader
+} from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import Dropzone from "react-dropzone";
 import Recaptcha from "react-google-invisible-recaptcha";
@@ -42,7 +51,8 @@ export default class AddListingForm extends React.Component {
             files: [], 
             file_ids: [], 
             fileErrorCode: 0,
-            categoryOptions: []
+            categoryOptions: [],
+            uploading: false
         };
     }
 
@@ -92,6 +102,7 @@ export default class AddListingForm extends React.Component {
     handleSubmit(submittedVals) {
         // TODO: Loading bar
 
+        this.setState({ uploading: true });
         this.setState({submittedVals});
 
         if (this.checkFiles(this.state.files) == 0) {
@@ -122,6 +133,8 @@ export default class AddListingForm extends React.Component {
                         this.setState({ fireRedirect: true });
                     });
             });
+        } else {
+            this.setState({uploading: false});
         }
     }
 
@@ -227,11 +240,26 @@ export default class AddListingForm extends React.Component {
 
         if (this.state.fireRedirect) {
             return (
-                <Redirect to="/profile" />
+                <Redirect 
+                    to={{
+                        pathname: "/profile", 
+                        state: {addedListing: true}
+                    }} />
             );
         }
         else {
+            /* uploading */
+            var uploadingIndicator;
+            if (this.state.uploading) {
+                return (
+                    <Dimmer active>
+                        <Loader indeterminate>Posting</Loader>
+                    </Dimmer>
+                );
+            }
+
             return (
+
                 <Form 
                     validateError={errorValidator}
                     onSubmit={this.handleSubmit}

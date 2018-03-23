@@ -8,7 +8,8 @@ import {
     Header,
     Icon,
     Sticky,
-    Responsive
+    Responsive,
+    Message
 } from "semantic-ui-react";
 import AuthService from "services/api/auth.js";
 import ListingService from "services/api/listing.js";
@@ -39,6 +40,27 @@ export default class Profile extends React.Component {
     }
 
     render() {
+        /* Message when listing is listed (upon redirect) */
+        var addedListing;
+        var addedListingMsg;
+
+        if (this.props.location.state) {
+            addedListing = this.props.location.state.addedListing;
+        }
+
+        if (addedListing) {
+            addedListingMsg = (
+                <Message success icon>
+                    <Icon name="check circle outline" />
+                    <Message.Content>
+                        <Message.Header>Listing posted</Message.Header>
+                        Check out your new listing below.
+                    </Message.Content>
+                </Message>
+            );
+        }
+
+
         return (
             <Container style={{ paddingTop: '5em' }}>
                 <Grid stackable>
@@ -60,6 +82,7 @@ export default class Profile extends React.Component {
                         </Grid.Column>
 
                         <Grid.Column computer={11} tablet={10}>
+                            { addedListingMsg }
                             <ListingCardGrid itemsPerRow={2} listings={this.state.listings} />
                         </Grid.Column>
                     </Grid.Row>
