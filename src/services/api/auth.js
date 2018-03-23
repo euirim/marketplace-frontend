@@ -7,7 +7,7 @@ import request from "shared/lib/request";
 import URLService from "services/urls"
 
 // handles response from Facebook SDK
-function statusChangeCallback(response) {
+function statusChangeCallback(response, redirect_path) {
     // process response from facebook
     if (response.status === "connected") {
         // Logged into your app and Facebook.
@@ -34,7 +34,7 @@ function statusChangeCallback(response) {
                             "lastName": res.lastName
                         };
                         Cookies.set("authName", cookie, {expires: 14});
-                        window.location.replace("/"); // home page
+                        window.location.replace(redirect_path); // home page
                     });
             })
             .catch(res => {
@@ -49,9 +49,9 @@ function statusChangeCallback(response) {
 
 // check whether user is logged in through FB API
 // (check after login using button)
-function checkLogin() { 
+function checkLogin(redirect_path) { 
     FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
+        statusChangeCallback(response, redirect_path);
     });
 }
 
@@ -105,7 +105,7 @@ function fbSDKInitWrapper() {
     }
 }
 
-function handleClick() {
+function handleClick(redirect_path="/") {
         FB.init({
             appId      : FB_APP_ID,
             cookie     : true,
@@ -115,7 +115,7 @@ function handleClick() {
 
         FB.login(res => {
             if (res.authResponse) {
-                checkLogin();
+                checkLogin(redirect_path);
             }
         }, {scope: 'email,public_profile'});
 }

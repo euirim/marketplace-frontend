@@ -19,9 +19,8 @@ export default class Login extends React.Component {
         super(props);
     
         this.state = {
-            redirectToReferrer: this.props.redirectToReferrer
+            redirectToReferrer: false
         };
-
     }
 
     componentDidMount() {
@@ -38,16 +37,17 @@ export default class Login extends React.Component {
     render() {
         const { from } = this.props.location.state || { from: { pathname: '/' } };
         const { redirectToReferrer } = this.state;
-        
+
         if (redirectToReferrer) {
             return (
                 <Redirect to={from}/>
             );
         }
 
+        // referralPath is the dest of redirect after successful login
         return (
             <CentralPanel computer={6} tablet={10} mobile={16}>
-                <LoginPanel />
+                <LoginPanel referralPath={ from.pathname } />
             </CentralPanel>
         );
     }

@@ -26,7 +26,7 @@ export default class LoginPanel extends React.Component {
                 </Card.Content>
 
                 <Card.Content textAlign="center">
-                    <Button onClick={ AuthService.handleClick } color="facebook" size="large">
+                    <Button onClick={ () => {AuthService.handleClick(this.props.referralPath);} } color="facebook" size="large">
                         <Icon name="facebook" />Continue with Facebook
                     </Button>
                 </Card.Content>
