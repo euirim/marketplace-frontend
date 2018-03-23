@@ -24,11 +24,12 @@ export default class MainNavbar extends React.Component {
                     <Menu.Item as={Link} to="/profile">
                         <Icon name="user"/> { this.props.profile.firstName }
                     </Menu.Item>
+
                     <Dropdown item icon="setting">
                         <Dropdown.Menu>
-                            <Dropdown.Item as={Link} to="/profile">MY LISTINGS</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/profile">My Listings</Dropdown.Item>
                             <LogoutConfirmModal>
-                                <Dropdown.Item>LOG OUT</Dropdown.Item>
+                                <Dropdown.Item>Log Out</Dropdown.Item>
                             </LogoutConfirmModal>
                         </Dropdown.Menu>
                     </Dropdown>

@@ -2,11 +2,18 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 
 import { 
-    Grid, Container, Button, Header 
+    Grid, 
+    Container, 
+    Button, 
+    Header,
+    Icon,
+    Sticky,
+    Responsive
 } from "semantic-ui-react";
 import AuthService from "services/api/auth.js";
 import ListingService from "services/api/listing.js";
 
+import UserCard from "components/UserCard";
 import ListingCardGrid from "components/ListingCardGrid";
 
 export default class Profile extends React.Component {
@@ -36,13 +43,24 @@ export default class Profile extends React.Component {
             <Container style={{ paddingTop: '5em' }}>
                 <Grid stackable>
                     <Grid.Row>
-                        <Grid.Column>
-                            <Header as="h1">{ this.state.firstName } { this.state.lastName }</Header>
-                            <Button as={Link} to="/listings/add">Add Listing</Button>
-                            <Header as="h2">Listings</Header>
-                            
-                            <ListingCardGrid listings={this.state.listings}>
-                            </ListingCardGrid>
+                        <Grid.Column computer={5} tablet={6} mobile={16}>
+                            {/* Sticky doesn't work on mobile. */}
+                            <Responsive 
+                                as={Sticky} 
+                                minWidth={Responsive.onlyTablet.minWidth} 
+                                offset={90}>
+                                <UserCard 
+                                    name={this.state.firstName + " " + this.state.lastName} />
+                            </Responsive>
+
+                            <Responsive {...Responsive.onlyMobile}>
+                                <UserCard 
+                                    name={this.state.firstName + " " + this.state.lastName} />
+                            </Responsive> 
+                        </Grid.Column>
+
+                        <Grid.Column computer={11} tablet={10}>
+                            <ListingCardGrid itemsPerRow={2} listings={this.state.listings} />
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

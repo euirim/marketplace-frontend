@@ -7,7 +7,15 @@
 @imageMargin: 0;
 @imageWidth: 225px;
 
-// Text
+@itemFontWeight: bold;
+
+/* Text */
 @textMenuMargin: 0 -(@textMenuItemSpacing);
 @textMenuItemColor: @black;
 @textMenuActiveItemFontWeight: bold;
+
+/* Dropdown in Menu */
+@dropdownMenuBoxShadow: 0px 1px 6px 0px @solidBorderColor;
+@dropdownItemPadding: @relativeSmall @relativeBig;
+@dropdownItemTextTransform: uppercase;
+@dropdownItemFontWeight: bold;

@@ -28,10 +28,22 @@ export default class ListingCardGrid extends React.Component {
                 category={ listing.category } 
                 photo={ listing.photos[0] } />
         );
-        return (
-            <Card.Group itemsPerRow={3} doubling stackable centered>
-                { listings }
-            </Card.Group>
-        );
+        var card;
+        if (this.props.itemsPerRow > 2) {
+            card = (
+                <Card.Group itemsPerRow={this.props.itemsPerRow} doubling stackable centered>
+                    { listings }
+                </Card.Group>
+            );
+        } else {
+            // doubling introduces card width problems when itemsPerRow is 2
+            card = (
+                <Card.Group itemsPerRow={this.props.itemsPerRow} stackable centered>
+                    { listings }
+                </Card.Group>
+            );
+        }
+
+        return card;
     }
 }

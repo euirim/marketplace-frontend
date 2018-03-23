@@ -64,7 +64,9 @@ export default class ListingList extends React.Component {
                     handler={this.handleCategoryUpdate} 
                     categories={this.state.categories}
                     activeCategory={this.state.activeCategory} />
-                <ListingCardGrid listings={ this.state.listings } />
+                <ListingCardGrid 
+                    itemsPerRow={this.props.itemsPerRow} 
+                    listings={ this.state.listings } />
             </div>
         )
     }

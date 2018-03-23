@@ -19,7 +19,7 @@ export default class Login extends React.Component {
         super(props);
     
         this.state = {
-            redirectToReferrer: false
+            redirectToReferrer: this.props.redirectToReferrer
         };
 
     }

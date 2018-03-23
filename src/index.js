@@ -8,7 +8,7 @@ import {
     Header, 
     Image, 
     Menu, 
-    Segment 
+    Segment
 } from "semantic-ui-react";
 import {
     BrowserRouter as Router,
