@@ -22,12 +22,13 @@ export default class ListingList extends React.Component {
     componentDidMount() {
         CategoryService.get_all()
             .then(res => {
+                console.log(res);
                 this.setState({categories: res});
             });
 
         ListingService.get_most_recent(3)
             .then(res => {
-                this.setState({listings: res});
+                this.setState({listings: res.results});
             });
     }
 
@@ -45,14 +46,12 @@ export default class ListingList extends React.Component {
         if (category_id !== -1) {
             ListingService.filter(params)
                 .then(res => {
-                    console.log("OY!");
-                    console.log(res);
-                    this.setState({listings: res})
+                    this.setState({listings: res.results})
                 });
         } else {
             ListingService.get_most_recent(3)
                 .then(res => {
-                    this.setState({listings: res});
+                    this.setState({listings: res.results});
                 });
         }
     }
