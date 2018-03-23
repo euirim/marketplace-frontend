@@ -56,10 +56,10 @@ export default class InquiryForm extends React.Component {
                 onSubmit={props.formApi.submitForm}
             >
                 <div className="field required">
-                    <TextArea field="msg" id="msg" />
+                    <TextArea field="msg" id="msg" placeholder="Your message to the lister..." />
                 </div>
 
-                <div className="ui button" onClick={this.onSubmit}>Submit</div>
+                <div className="ui button positive" onClick={this.onSubmit}>SEND</div>
 
                 <Recaptcha
                     ref={ el => this.recaptcha = el }

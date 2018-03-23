@@ -46,7 +46,7 @@ export default class Login extends React.Component {
         }
 
         return (
-            <CentralPanel>
+            <CentralPanel computer={6} tablet={10} mobile={16}>
                 <LoginPanel />
             </CentralPanel>
         );

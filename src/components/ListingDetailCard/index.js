@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { 
     Card, 
     Label,
@@ -6,9 +6,11 @@ import {
     Icon,
     Button,
     List
-} from 'semantic-ui-react';
+} from "semantic-ui-react";
 
-import ShowMoreText from 'react-show-more-text';
+import ShowMoreText from "react-show-more-text";
+
+import ContactButton from "components/ContactButton";
 
 export default class ListingDetailCard extends React.Component {
     /*
@@ -20,12 +22,6 @@ export default class ListingDetailCard extends React.Component {
     }
 
     render() {
-        const priceLabel = {
-            basic: true, 
-            color: 'red', 
-            pointing: 'right', 
-            content: "$ " + this.props.listing.price
-        };
 
         return (
             <Card fluid>
@@ -44,12 +40,7 @@ export default class ListingDetailCard extends React.Component {
                 </Card.Content>
 
                 <Card.Content>
-                    <Button
-                        color='red'
-                        content='CONTACT'
-                        icon='mail'
-                        label={priceLabel}
-                        labelPosition="left" />
+                    <ContactButton listing={ this.props.listing } />
                 </Card.Content>
 
                 <Card.Content>
@@ -58,7 +49,7 @@ export default class ListingDetailCard extends React.Component {
                             lines={5}> 
 
                             {this.props.listing.about.split("\n").map(i => {
-                                return <p>{i}</p>;
+                                return <p>{i} </p>;
                             })}
                         </ShowMoreText>
                     </Card.Description>

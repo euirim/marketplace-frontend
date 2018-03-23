@@ -8,7 +8,7 @@ import CentralPanel from "components/CentralPanel";
 export default class FourOhFour extends React.Component {
     render() {
         return (
-            <CentralPanel>
+            <CentralPanel computer={6} tablet={10} mobile={16}>
                 <FourOhFourPanel />
             </CentralPanel>
         );

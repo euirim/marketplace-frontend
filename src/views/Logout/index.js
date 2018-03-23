@@ -10,11 +10,7 @@ export default class Logout extends React.Component {
         if (AuthService.isAuthenticated) {
             AuthService.logout();
 
-            return (
-                <Container style={{ paddingTop: '5em' }}>
-                    <p>Successfully logged out!</p>                
-                </Container>
-            );
+            return null;
         } 
         else {
             return (

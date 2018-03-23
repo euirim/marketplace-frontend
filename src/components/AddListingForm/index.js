@@ -215,7 +215,7 @@ export default class AddListingForm extends React.Component {
                     </Dropzone>
                 </div>
 
-                <div className="ui button" onClick={this.onSubmit}>Submit</div>
+                <div className="ui button positive" onClick={this.onSubmit}>POST</div>
 
                 <Recaptcha
                     ref={ el => this.recaptcha = el }

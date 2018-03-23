@@ -17,7 +17,10 @@ export default class CentralPanel extends React.Component {
             <Container style={{ paddingTop: '5em' }}>
                 <Grid stackable>
                     <Grid.Row centered>
-                        <Grid.Column computer={6} tablet={10} mobile={16}>
+                        <Grid.Column 
+                            computer={this.props.computer} 
+                            tablet={this.props.tablet} 
+                            mobile={this.props.mobile}>
                             { this.props.children }
                         </Grid.Column>
                     </Grid.Row>

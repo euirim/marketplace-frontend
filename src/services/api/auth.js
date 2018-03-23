@@ -78,12 +78,13 @@ function logout() {
             console.log(res);
 
             if (res.detail === "Successfully logged out.") {
-                alert("Logged out!");
                 Cookies.remove("authName");
             }
             else {
-                alert("Logout failed");
+                alert("Logout failed. Please try again.");
             }
+
+            window.location.replace("/");
         });
     return;
 }

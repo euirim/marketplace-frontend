@@ -13,6 +13,7 @@ import {
 } from "semantic-ui-react";
 import AuthService from "services/api/auth.js";
 import URLService from "services/urls/index.js";
+import LogoutConfirmModal from "components/LogoutConfirmModal";
 
 export default class MainNavbar extends React.Component {
     render() {
@@ -26,7 +27,9 @@ export default class MainNavbar extends React.Component {
                     <Dropdown item icon="setting">
                         <Dropdown.Menu>
                             <Dropdown.Item as={Link} to="/profile">MY LISTINGS</Dropdown.Item>
-                            <Dropdown.Item as={Link} to="/logout">LOG OUT</Dropdown.Item>
+                            <LogoutConfirmModal>
+                                <Dropdown.Item>LOG OUT</Dropdown.Item>
+                            </LogoutConfirmModal>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Menu.Menu>
