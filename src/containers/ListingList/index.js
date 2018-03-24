@@ -22,7 +22,7 @@ export default class ListingList extends React.Component {
             categories: [],
             totalPages: null,
             params: {
-                page_size: 3,
+                page_size: 12,
                 category: null,
                 page: 1
             }
