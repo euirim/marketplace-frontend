@@ -41,6 +41,7 @@
         "axios": "^0.17.1",
         "gulp": "^3.9.1",
         "js-cookie": "^2.2.0",
+        "query-string": "^6.0.0",
         "react": "^16.1.1",
         "react-dom": "^16.1.1",
         "react-dropzone": "^4.2.3",

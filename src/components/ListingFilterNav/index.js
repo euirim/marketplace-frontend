@@ -38,8 +38,8 @@ export default class ListingFilterNav extends React.Component {
         return (
             <Menu text className="listing-filter-nav">
                 <Menu.Item
-                    active={ this.props.activeCategory === -1}
-                    onClick={() => this.props.handler(-1)}>
+                    active={ this.props.activeCategory === null}
+                    onClick={() => this.props.handler(null)}>
                     ALL
                 </Menu.Item>
                 { categories }

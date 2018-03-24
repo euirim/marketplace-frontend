@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Grid } from "semantic-ui-react";
+import queryString from "query-string";
 
 import ListingCardGrid from "components/ListingCardGrid";
 import ListingFilterNav from "components/ListingFilterNav";
@@ -35,7 +36,7 @@ export default class ListingList extends React.Component {
                 this.setState({categories: res});
             });
 
-        ListingService.get_most_recent(3)
+        ListingService.filter(this.state.params)
             .then(res => {
                 this.setState({
                     listings: res.results,
@@ -47,18 +48,20 @@ export default class ListingList extends React.Component {
     handleCategoryUpdate(category_id) {
         var newParams = this.state.params;
 
-        if (category_id == -1) {
-            newParams.category = null;
-            this.setState({
-                params: newParams
-            });
-        } else {
-            newParams.category = category_id;
-        }
+        newParams.page = 1;
+
+        newParams.category = category_id;
+
+        this.setState({
+            params: newParams
+        });
 
         ListingService.filter(this.state.params)
             .then(res => {
-                this.setState({listings: res.results})
+                this.setState({
+                    listings: res.results,
+                    totalPages: res.total_pages
+                });
             });
     }
 
@@ -82,7 +85,7 @@ export default class ListingList extends React.Component {
                 <ListingFilterNav 
                     handler={this.handleCategoryUpdate} 
                     categories={this.state.categories}
-                    activeCategory={this.state.activeCategory} />
+                    activeCategory={this.state.params.category} />
 
                 <ListingCardGrid 
                     itemsPerRow={this.props.itemsPerRow} 
