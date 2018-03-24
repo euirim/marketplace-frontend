@@ -2,6 +2,8 @@ import Cookies from "js-cookie";
 
 import request from "shared/lib/request";
 
+var default_page_size = 25;
+
 function get(id) {
     return request({
         url: `/api/listings/${id}.json`,
@@ -9,17 +11,25 @@ function get(id) {
     });
 }
 
-function get_most_recent(num) {
+function get_most_recent(num=default_page_size, page=1) {
     return request({
         url: `/api/listings/?format=json`,
-        method: "GET"
+        method: "GET",
+        params: {
+            page_size: num,
+            page: page
+        }
     });
 }
 
-function get_my_listings(num) {
+function get_my_listings(num=default_page_size, page=1) {
     return request({
         url: `/api/listings/user.json`,
-        method: "GET"
+        method: "GET",
+        params: {
+            page_size: num,
+            page: page
+        }
     });
 }
 

@@ -1,7 +1,10 @@
 import React from "react";
 
+import { Grid } from "semantic-ui-react";
+
 import ListingCardGrid from "components/ListingCardGrid";
 import ListingFilterNav from "components/ListingFilterNav";
+import PaginationMenu from "components/PaginationMenu";
 
 import CategoryService from "services/api/category.js";
 import ListingService from "services/api/listing.js";
@@ -11,11 +14,17 @@ export default class ListingList extends React.Component {
         super(props);
 
         this.handleCategoryUpdate = this.handleCategoryUpdate.bind(this);
+        this.handlePageChange = this.handlePageChange.bind(this);
     
         this.state = { 
             listings: [],
             categories: [],
-            activeCategory: -1
+            totalPages: null,
+            params: {
+                page_size: 3,
+                category: null,
+                page: 1
+            }
         };
     }
 
@@ -28,32 +37,43 @@ export default class ListingList extends React.Component {
 
         ListingService.get_most_recent(3)
             .then(res => {
-                this.setState({listings: res.results});
+                this.setState({
+                    listings: res.results,
+                    totalPages: res.total_pages
+                });
             });
     }
 
     handleCategoryUpdate(category_id) {
-        this.setState({
-            activeCategory: category_id
-        });
+        var newParams = this.state.params;
 
-        // filter listings based on category
-        const params = {
-            category: category_id
-        }
-
-        // -1 category_id is all
-        if (category_id !== -1) {
-            ListingService.filter(params)
-                .then(res => {
-                    this.setState({listings: res.results})
-                });
+        if (category_id == -1) {
+            newParams.category = null;
+            this.setState({
+                params: newParams
+            });
         } else {
-            ListingService.get_most_recent(3)
-                .then(res => {
-                    this.setState({listings: res.results});
-                });
+            newParams.category = category_id;
         }
+
+        ListingService.filter(this.state.params)
+            .then(res => {
+                this.setState({listings: res.results})
+            });
+    }
+
+    handlePageChange(e, d) {
+        var newParams = this.state.params;
+        newParams.page = d.activePage;
+
+        ListingService.filter(this.state.params)
+            .then(res => {
+                this.setState({listings: res.results});
+            });
+
+        this.setState({
+            params: newParams            
+        });
     }
 
     render() {
@@ -63,10 +83,24 @@ export default class ListingList extends React.Component {
                     handler={this.handleCategoryUpdate} 
                     categories={this.state.categories}
                     activeCategory={this.state.activeCategory} />
+
                 <ListingCardGrid 
                     itemsPerRow={this.props.itemsPerRow} 
                     listings={ this.state.listings } />
+
+                <br />
+                
+                <Grid centered>
+                    <Grid.Row>
+                        <Grid.Column textAlign="center">
+                            <PaginationMenu 
+                                activePage={this.state.params.page} 
+                                totalPages={this.state.totalPages}
+                                onPageChange={this.handlePageChange} />
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
             </div>
-        )
+        );
     }
 };
