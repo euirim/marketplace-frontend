@@ -32,6 +32,7 @@ import Logout from "views/Logout";
 import Profile from "views/Profile";
 import AddListing from "views/AddListing";
 import FourOhFour from "views/FourOhFour";
+import Empty from "views/Empty";
 
 
 ReactDOM.render(
@@ -52,6 +53,7 @@ ReactDOM.render(
                     <PrivateRoute path="/listings/:id" component={ListingDetail}/>
                     <PrivateRoute exact path="/profile" component={Profile}/>
 
+                    <Route exact path="/empty" component={Empty} />
                     <Route component={FourOhFour}/>
                 </Switch>
 

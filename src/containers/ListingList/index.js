@@ -10,17 +10,20 @@ import PaginationMenu from "components/PaginationMenu";
 import CategoryService from "services/api/category.js";
 import ListingService from "services/api/listing.js";
 
-var init_state = {
-    listings: [],
-    categories: [],
-    totalPages: null,
-    params: {
-        page_size: 12,
-        category: null,
-        page: 1,
-        search: null
-    }
-}
+const init_state = () => {
+    return ({
+        listings: [],
+        categories: [],
+        totalPages: null,
+        params: {
+            page_size: 12,
+            category: null,
+            page: 1,
+            search: null
+        }
+    });
+};
+
 export default class ListingList extends React.Component {
     constructor(props) {
         super(props);
@@ -28,17 +31,32 @@ export default class ListingList extends React.Component {
         this._handleCategoryUpdate = this._handleCategoryUpdate.bind(this);
         this._handlePageChange = this._handlePageChange.bind(this);
         this._handleSearch = this._handleSearch.bind(this);
+        this._updateListings = this._updateListings.bind(this);
+        this._refresh = this._refresh.bind(this);
     
-        this.state = init_state;
+        this.state = init_state();
     }
 
     componentDidMount() {
         CategoryService.get_all()
             .then(res => {
-                console.log(res);
                 this.setState({categories: res});
             });
 
+        this._updateListings();
+    }
+
+    /*
+    componentWillReceiveProps(nextProps) {
+        if ((nextProps.id === this.props.id)) {
+            console.log("HELLO");
+            this.setState(Object.assign({}, init_state));
+            this._refresh();
+        }
+    }
+    */
+
+    _updateListings() {
         ListingService.filter(this.state.params)
             .then(res => {
                 this.setState({

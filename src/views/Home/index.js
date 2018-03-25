@@ -15,26 +15,32 @@ export default class Home extends React.Component {
         super(props);
 
         this.state = {
-            homes_listings: [],
         };
     }
 
-    componentDidMount() {
-        ListingService.get_most_recent(3)
-            .then(res => {
-                console.log(res);
-                this.setState({homes_listings: res});
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.id === this.props.id) {
+            // To work around the fact that React-Router can't
+            // reload state upon same url reload. Force remount
+            
+            var key = 1;    
+            
+            if (nextProps.location.state && nextProps.location.state.key) {
+                key = nextProps.location.state.key;
+            } 
+
+            this.setState({
+                key: key
             });
+        }
     }
 
     render() {
         return (
-            <Container style={{ paddingTop: '5em' }}>
+            <Container style={{ paddingTop: '5em' }} key={this.state.key}>
                 <Grid stackable>
                     <Grid.Row>
-                        <ListingList 
-                            itemsPerRow={3} 
-                            listings={this.state.homes_listings}>
+                        <ListingList itemsPerRow={3}>
                         </ListingList>
                     </Grid.Row>
                 </Grid>

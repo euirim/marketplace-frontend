@@ -48,7 +48,12 @@ export default class MainNavbar extends React.Component {
 
         return (
             <Menu fixed="top" size="small" borderless>
-                <Menu.Item as="a" href="/">
+                <Menu.Item 
+                    as={Link}
+                    to={{
+                        pathname: "/",
+                        state: {key: Date.now()}
+                    }}>
                     <img src={URLService.genStaticURL("/images/logo.svg")} />
                 </Menu.Item>
                 { userStatusIndicator }
