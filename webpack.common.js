@@ -1,27 +1,5 @@
 var webpack = require("webpack");
 const path = require("path");
-const MinifyPlugin = require('babel-minify-webpack-plugin');
-var CompressionPlugin = require('compression-webpack-plugin');
-
-var devSettings = {
-  bundleName: "bundle_dev.js",
-  apiURL: "http://localhost/",
-  rootURL: "http://localhost",
-  fbAppID: "822489027938447",
-  s3URL: "http://localhost/static"
-};
-
-var prodSettings = {
-  bundleName: "bundle_prod.js",
-  apiURL: "http://marketplace-staging.us-east-2.elasticbeanstalk.com/",
-  rootURL: "",
-  // rootURL: "http://marketplace-staging.us-east-2.elasticbeanstalk.com",
-  fbAppID: "175852563003044",
-  s3URL: "https://s3.us-east-2.amazonaws.com/maroon-marketplace"
-};
-
-// Alter settings based on NODE_ENV variable passed in
-var settings = process.env.NODE_ENV === "dev" ? devSettings : prodSettings;
 
 var config = {
   entry: "./src/index.js",

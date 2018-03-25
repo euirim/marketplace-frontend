@@ -3,7 +3,8 @@ import React from "react";
 import { 
     Container, 
     Card,
-    Transition
+    Transition,
+    Loader
 } from "semantic-ui-react";
 
 import ListingCard from "components/ListingCard";
@@ -18,11 +19,20 @@ export default class ListingCardGrid extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.listings);
         this.setState({listings: this.props.listings});
     }
 
     render() {
+        if (this.props.loading) {
+            return (
+                <Loader active inline="centered" size="massive" />
+            );
+        } else if (!this.props.loading && (this.props.listings.length == 0)) {
+            return (
+                <p>No listings found.</p>
+            );
+        }
+
         var listings = this.props.listings.map((listing) => 
             <ListingCard 
                 key={ listing.id } 

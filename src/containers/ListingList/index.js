@@ -14,6 +14,8 @@ const init_state = () => {
     return ({
         listings: [],
         categories: [],
+        loadListings: false,
+        loadCategories: false,
         totalPages: null,
         params: {
             page_size: 12,
@@ -57,12 +59,16 @@ export default class ListingList extends React.Component {
     */
 
     _updateListings() {
+        // Enable loader
+        this.setState({loadingListings: true});
         ListingService.filter(this.state.params)
             .then(res => {
                 this.setState({
                     listings: res.results,
                     totalPages: res.total_pages
                 });
+
+                this.setState({loadingListings: false});
             });
     }
 
@@ -77,13 +83,7 @@ export default class ListingList extends React.Component {
             params: newParams
         });
 
-        ListingService.filter(this.state.params)
-            .then(res => {
-                this.setState({
-                    listings: res.results,
-                    totalPages: res.total_pages
-                });
-            });
+        this._updateListings();
     }
 
     _handlePageChange(e, d) {
@@ -94,10 +94,7 @@ export default class ListingList extends React.Component {
             params: newParams            
         });
 
-        ListingService.filter(this.state.params)
-            .then(res => {
-                this.setState({listings: res.results});
-            });
+        this._updateListings();
     }
 
     /* 
@@ -114,13 +111,7 @@ export default class ListingList extends React.Component {
             params: newParams            
         });
 
-        ListingService.filter(this.state.params)
-            .then(res => {
-                this.setState({
-                    listings: res.results,
-                    totalPages: res.total_pages
-                });
-            });
+        this._updateListings();
     }
 
     /* 
@@ -145,6 +136,7 @@ export default class ListingList extends React.Component {
                     activeCategory={this.state.params.category} />
 
                 <ListingCardGrid 
+                    loading={this.state.loadingListings}
                     itemsPerRow={this.props.itemsPerRow} 
                     listings={ this.state.listings } />
 
