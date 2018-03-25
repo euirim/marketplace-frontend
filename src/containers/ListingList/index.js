@@ -10,6 +10,17 @@ import PaginationMenu from "components/PaginationMenu";
 import CategoryService from "services/api/category.js";
 import ListingService from "services/api/listing.js";
 
+var init_state = {
+    listings: [],
+    categories: [],
+    totalPages: null,
+    params: {
+        page_size: 12,
+        category: null,
+        page: 1,
+        search: null
+    }
+}
 export default class ListingList extends React.Component {
     constructor(props) {
         super(props);
@@ -18,17 +29,7 @@ export default class ListingList extends React.Component {
         this._handlePageChange = this._handlePageChange.bind(this);
         this._handleSearch = this._handleSearch.bind(this);
     
-        this.state = { 
-            listings: [],
-            categories: [],
-            totalPages: null,
-            params: {
-                page_size: 12,
-                category: null,
-                page: 1,
-                search: null
-            }
-        };
+        this.state = init_state;
     }
 
     componentDidMount() {
@@ -102,6 +103,18 @@ export default class ListingList extends React.Component {
                     totalPages: res.total_pages
                 });
             });
+    }
+
+    /* 
+    Used to refresh component upon click of some
+    object (such as logo). Created because react-router
+    no longer supports refreshing.
+    */
+    _refresh() {
+        this.setState(init_state);
+
+        // reload default listings
+        this.componentDidMount();
     }
 
     render() {

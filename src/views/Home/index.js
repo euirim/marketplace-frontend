@@ -32,7 +32,9 @@ export default class Home extends React.Component {
             <Container style={{ paddingTop: '5em' }}>
                 <Grid stackable>
                     <Grid.Row>
-                        <ListingList itemsPerRow={3} listings={this.state.homes_listings}>
+                        <ListingList 
+                            itemsPerRow={3} 
+                            listings={this.state.homes_listings}>
                         </ListingList>
                     </Grid.Row>
                 </Grid>
