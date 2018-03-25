@@ -7,7 +7,8 @@ import {
     Modal, 
     Button,
     Icon,
-    Message
+    Message,
+    Loader
 } from "semantic-ui-react";
 import ImageGallery from 'react-image-gallery';
 
@@ -118,8 +119,8 @@ export default class ListingDetail extends React.Component {
         }
         else {
             content = (
-                 <Container style={{ paddingTop: '5em' }}>
-                    <Header as="h2">Loading...</Header>
+                <Container style={{ paddingTop: '5em' }}>
+                    <Loader active inline="centered" size="massive" />
                 </Container>
             );
         }

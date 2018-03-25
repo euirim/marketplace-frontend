@@ -1,6 +1,10 @@
 import React from "react";
 
-import { Container, Card } from "semantic-ui-react";
+import { 
+    Container, 
+    Card,
+    Transition
+} from "semantic-ui-react";
 
 import ListingCard from "components/ListingCard";
 

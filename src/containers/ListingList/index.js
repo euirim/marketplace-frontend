@@ -14,8 +14,9 @@ export default class ListingList extends React.Component {
     constructor(props) {
         super(props);
 
-        this.handleCategoryUpdate = this.handleCategoryUpdate.bind(this);
-        this.handlePageChange = this.handlePageChange.bind(this);
+        this._handleCategoryUpdate = this._handleCategoryUpdate.bind(this);
+        this._handlePageChange = this._handlePageChange.bind(this);
+        this._handleSearch = this._handleSearch.bind(this);
     
         this.state = { 
             listings: [],
@@ -24,7 +25,8 @@ export default class ListingList extends React.Component {
             params: {
                 page_size: 12,
                 category: null,
-                page: 1
+                page: 1,
+                search: null
             }
         };
     }
@@ -45,7 +47,7 @@ export default class ListingList extends React.Component {
             });
     }
 
-    handleCategoryUpdate(category_id) {
+    _handleCategoryUpdate(category_id) {
         var newParams = this.state.params;
 
         newParams.page = 1;
@@ -65,25 +67,49 @@ export default class ListingList extends React.Component {
             });
     }
 
-    handlePageChange(e, d) {
+    _handlePageChange(e, d) {
         var newParams = this.state.params;
         newParams.page = d.activePage;
+
+        this.setState({
+            params: newParams            
+        });
 
         ListingService.filter(this.state.params)
             .then(res => {
                 this.setState({listings: res.results});
             });
+    }
+
+    /* 
+    Handle search of a term in ListingFilterNav.
+    Doesn't handle getting the term from the actual input though.
+    Assumes term is not null.
+    */
+    _handleSearch(term) {
+        var newParams = this.state.params;
+        newParams.search = term;     
+        newParams.page = 1;
 
         this.setState({
             params: newParams            
         });
+
+        ListingService.filter(this.state.params)
+            .then(res => {
+                this.setState({
+                    listings: res.results,
+                    totalPages: res.total_pages
+                });
+            });
     }
 
     render() {
         return (
             <div style={{ width: "100%" }}>
                 <ListingFilterNav 
-                    handler={this.handleCategoryUpdate} 
+                    handler={this._handleCategoryUpdate} 
+                    onSearch={this._handleSearch}
                     categories={this.state.categories}
                     activeCategory={this.state.params.category} />
 
@@ -99,7 +125,7 @@ export default class ListingList extends React.Component {
                             <PaginationMenu 
                                 activePage={this.state.params.page} 
                                 totalPages={this.state.totalPages}
-                                onPageChange={this.handlePageChange} />
+                                onPageChange={this._handlePageChange} />
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
