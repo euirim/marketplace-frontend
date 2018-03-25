@@ -8,7 +8,7 @@ var settings = {
   bundleName: "bundle_prod.js",
   apiURL: "http://marketplace.us-east-2.elasticbeanstalk.com/",
   rootURL: "",
-  fbAppID: "175852563003044",
+  fbAppID: "428104970976762",
   s3URL: "https://s3.us-east-2.amazonaws.com/maroon-marketplace"
 };
 
