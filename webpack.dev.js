@@ -4,10 +4,10 @@ const common = require('./webpack.common.js');
 
 var settings = {
   bundleName: "bundle_dev.js",
-  apiURL: "http://localhost/",
-  rootURL: "http://localhost",
-  fbAppID: "822489027938447",
-  s3URL: "http://localhost/static"
+  apiURL: "https://localhost/",
+  rootURL: "https://localhost",
+  fbAppID: "160970054618560",
+  s3URL: "https://localhost/static"
 };
 
 module.exports = merge(common, {

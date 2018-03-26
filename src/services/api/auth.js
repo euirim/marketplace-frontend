@@ -96,7 +96,7 @@ function fbSDKInitWrapper() {
             appId      : FB_APP_ID,
             cookie     : true,
             xfbml      : true,
-            version    : 'v2.11'
+            version    : 'v2.12'
         });
         
         FB.AppEvents.logPageView();   
@@ -110,7 +110,7 @@ function handleClick(redirect_path="/") {
             appId      : FB_APP_ID,
             cookie     : true,
             xfbml      : true,
-            version    : 'v2.11'
+            version    : 'v2.12'
         });
 
         FB.login(res => {
