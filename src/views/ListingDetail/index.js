@@ -107,7 +107,10 @@ export default class ListingDetail extends React.Component {
 
                         <Grid.Row>
                             <Grid.Column width={9}>
-                                <ImageGallery items={images} />
+                                <ImageGallery 
+                                    showPlayButton={false}
+                                    slideDuration={600}
+                                    items={images} />
                             </Grid.Column>
                             <Grid.Column width={7}>
                                 <ListingDetailCard listing={this.state.listing} modal={ContactModal} />

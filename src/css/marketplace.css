@@ -29,11 +29,11 @@
 }
 
 /* Listing Detail Gallery */
-.image-gallery-image {
+.image-gallery-content:not(.fullscreen) .image-gallery-image {
     background-color: #1B1C1D;    
 }
 
-.image-gallery-image img {
+.image-gallery-content:not(.fullscreen) .image-gallery-image img {
     object-fit: scale-down;
     max-height: 400px;
     width: 100%;
@@ -42,5 +42,11 @@
 .image-gallery-thumbnail img {
     object-fit: cover;
     max-height: 65px;
+    width: 100%;
+}
+
+.image-gallery-content.fullscreen .image-gallery-image img {
+    object-fit: scale-down;
+    max-height: 70vh;
     width: 100%;
 }
