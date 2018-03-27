@@ -22,7 +22,7 @@ export default class ListingCard extends React.Component {
             <Card as={ Link } to={ "/listings/" + this.props.id } centered fluid>
                 <ProgressiveImage 
                     src={ URLService.genMediaURL(this.props.photo) }
-                    placeholder={ URLService.genStaticURL("card_img_ph.png") }>
+                    placeholder={ URLService.genStaticURL("/images/card_img_ph.png") }>
 
                     {(src) => (
                         <Image 
