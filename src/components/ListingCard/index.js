@@ -12,6 +12,7 @@ import {
     Header,
     Icon
 } from 'semantic-ui-react';
+import ProgressiveImage from "react-progressive-image";
 
 import URLService from "services/urls/index.js"
 
@@ -19,17 +20,24 @@ export default class ListingCard extends React.Component {
     render(){
         return (
             <Card as={ Link } to={ "/listings/" + this.props.id } centered fluid>
-                <Image 
-                    label={
-                        { 
-                            as: "a", 
-                            content: this.props.category.name, 
-                            attached: "top right", 
-                            color: this.props.category.color
-                        }
-                    } 
-                    src={ URLService.genMediaURL(this.props.photo) }>
-                </Image>
+                <ProgressiveImage 
+                    src={ URLService.genMediaURL(this.props.photo) }
+                    placeholder={ URLService.genStaticURL("card_img_ph.png") }>
+
+                    {(src) => (
+                        <Image 
+                            label={
+                                { 
+                                    as: "a", 
+                                    content: this.props.category.name, 
+                                    attached: "top right", 
+                                    color: this.props.category.color
+                                }
+                            } 
+                            src={ src }>
+                        </Image>
+                    )}
+                </ProgressiveImage>
 
                 <Card.Content>
                     <Card.Header disabled>
