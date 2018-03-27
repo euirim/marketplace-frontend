@@ -6,6 +6,7 @@ import {
     Menu, 
     Icon 
 } from "semantic-ui-react";
+import {Helmet} from "react-helmet";
 
 import ListingList from "containers/ListingList";
 import ListingService from "services/api/listing.js";
@@ -38,6 +39,10 @@ export default class Home extends React.Component {
     render() {
         return (
             <Container style={{ paddingTop: '5em' }} key={this.state.key}>
+                <Helmet>
+                    <title>Marketplace | The Chicago Maroon</title>
+                </Helmet>
+
                 <Grid stackable>
                     <Grid.Row>
                         <ListingList itemsPerRow={3}>

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Container, Header, Grid, Card } from "semantic-ui-react";
+import { Helmet } from "react-helmet";
 
 import AddListingForm from "components/AddListingForm";
 import CentralPanel from "components/CentralPanel";
@@ -12,6 +13,12 @@ export default class AddListing extends React.Component {
                 computer={8}
                 tablet={12}
                 mobile={16}>
+
+                <Helmet>
+                    <title>Add Listing</title>
+                </Helmet>
+
+
                 <Card fluid>
                     <Card.Content textAlign="center">
                         <Header as="h1">

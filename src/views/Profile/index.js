@@ -11,6 +11,8 @@ import {
     Responsive,
     Message
 } from "semantic-ui-react";
+import { Helmet } from "react-helmet";
+
 import AuthService from "services/api/auth.js";
 import ListingService from "services/api/listing.js";
 
@@ -63,6 +65,10 @@ export default class Profile extends React.Component {
 
         return (
             <Container style={{ paddingTop: '5em' }}>
+                <Helmet>
+                    <title>{ this.state.firstName } { this.state.lastName }</title>
+                </Helmet>
+
                 <Grid stackable>
                     <Grid.Row>
                         <Grid.Column computer={5} tablet={6} mobile={16}>

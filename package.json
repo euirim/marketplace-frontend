@@ -52,6 +52,7 @@
         "react-dropzone": "^4.2.3",
         "react-form": "^2.14.4",
         "react-google-invisible-recaptcha": "^0.2.6",
+        "react-helmet": "^5.2.0",
         "react-image-gallery": "^0.8.7",
         "react-infinite": "^0.12.1",
         "react-progressive-image": "^0.3.0",

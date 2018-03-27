@@ -11,6 +11,7 @@ import {
     Loader
 } from "semantic-ui-react";
 import ImageGallery from 'react-image-gallery';
+import { Helmet } from "react-helmet";
 
 import ListingService from "services/api/listing.js";
 import URLService from "services/urls";
@@ -45,7 +46,6 @@ export default class ListingDetail extends React.Component {
 
     render() {
         var content;
-
         if (this.state.listing) {
             var images = [];
             
@@ -102,6 +102,10 @@ export default class ListingDetail extends React.Component {
 
             content = (
                 <Container style={{ paddingTop: '5em' }}>
+                    <Helmet>
+                        <title>{ this.state.listing.name }</title>
+                    </Helmet>
+
                     <Grid stackable>
                         <InquiryMessage/>
 
@@ -123,6 +127,10 @@ export default class ListingDetail extends React.Component {
         else {
             content = (
                 <Container style={{ paddingTop: '5em' }}>
+                    <Helmet>
+                        <title>Loading...</title>
+                    </Helmet>
+
                     <Loader active inline="centered" size="massive" />
                 </Container>
             );

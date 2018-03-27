@@ -9,6 +9,7 @@ import {
     Grid,
     Card
 } from "semantic-ui-react";
+import { Helmet } from "react-helmet";
 
 import AuthService from "services/api/auth.js";
 import LoginPanel from "components/LoginPanel";
@@ -47,6 +48,10 @@ export default class Login extends React.Component {
         // referralPath is the dest of redirect after successful login
         return (
             <CentralPanel computer={6} tablet={10} mobile={16}>
+                <Helmet>
+                    <title>Login</title>
+                </Helmet>
+
                 <LoginPanel referralPath={ from.pathname } />
             </CentralPanel>
         );
