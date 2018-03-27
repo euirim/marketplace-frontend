@@ -45,6 +45,7 @@
         "babel-preset-env": "^1.6.1",
         "gulp": "^3.9.1",
         "js-cookie": "^2.2.0",
+        "pure-react-carousel": "^1.11.1",
         "query-string": "^6.0.0",
         "react": "^16.1.1",
         "react-dom": "^16.1.1",
