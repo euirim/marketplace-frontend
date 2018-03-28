@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { 
     Card,
@@ -24,7 +25,7 @@ export default class FourOhFourPanel extends React.Component {
                 </Card.Content>
 
                 <Card.Content textAlign="center">
-                    <Button primary size="large">
+                    <Button primary size="large" as={Link} to="/">
                         <Icon name="home" />Return Home
                     </Button>
                 </Card.Content>
