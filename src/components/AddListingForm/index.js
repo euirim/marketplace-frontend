@@ -183,7 +183,7 @@ export default class AddListingForm extends React.Component {
         if (this.state.fileErrorCode == 1) {
             DropzoneMsg = props => (
                 <Message negative>
-                    <Message.Header>Select an image</Message.Header>
+                    <Message.Header>Select Image(s)</Message.Header>
                     <p>All listings require at least one associated photo.</p>
                 </Message>
            );
@@ -191,8 +191,8 @@ export default class AddListingForm extends React.Component {
         else if (this.state.fileErrorCode == 2) {
             DropzoneMsg = props => (
                 <Message negative>
-                    <Message.Header>Too many images</Message.Header>
-                    <p>At this time, a listing can have at most 10 images.</p>
+                    <Message.Header>Select Image(s)</Message.Header>
+                    <p>You selected too many images. At this time, a listing can have at most 10 images.</p>
                 </Message>
             );
         }
@@ -200,14 +200,17 @@ export default class AddListingForm extends React.Component {
             DropzoneMsg = props => (
                 <Message
                     negative
-                    header="Images too large"
-                    content="At this time, the photos of a listing must collectively be under 10 MB in size."
+                    header="Select Image(s)"
+                    content="Images are too large. At this time, the photos of a listing must collectively be under 10 MB in size."
                 />
             );
         }
         else {
             DropzoneMsg = props => (
-                <p>You can select multiple images (max 10) after clicking the button below.</p>
+                <Message>
+                    <Message.Header>Select Image(s)</Message.Header>
+                    <p>All listings require at least one associated photo.</p>
+                </Message>
             );
         }
 
@@ -265,7 +268,6 @@ export default class AddListingForm extends React.Component {
                 <div className="field required">
                     <label>Photos</label>
                     <Dropzone 
-                        ref={(node) => { dropzoneRef = node; }}
                         onDrop={this.onDrop.bind(this)} 
                         accept="image/*" 
                         className="fluid" required >
@@ -281,14 +283,7 @@ export default class AddListingForm extends React.Component {
                             }
                         </List>
                     </Dropzone>
-
-                    <Button 
-                        icon="image"
-                        content="Select Image(s)"
-                        color="grey"
-                        onClick={() => { dropzoneRef.open() }}
-                        />
-                </div>
+               </div>
 
                 <div className="ui button positive" onClick={this.onSubmit}>POST</div>
 
