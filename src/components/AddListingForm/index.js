@@ -74,7 +74,6 @@ export default class AddListingForm extends React.Component {
                     });
                 }
             });
-
     }
 
     checkFiles(files) {
