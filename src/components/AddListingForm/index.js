@@ -11,7 +11,8 @@ import {
     List, 
     Dropdown,
     Dimmer,
-    Loader
+    Loader,
+    Message
 } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import Dropzone from "react-dropzone";
@@ -39,6 +40,11 @@ const errorValidator = (values) => {
     };
 };
 
+const requiredValidate = value => {
+    return !value ? "This is a required field." : null;
+}
+
+
 
 export default class AddListingForm extends React.Component {
     constructor(props) {
@@ -52,7 +58,8 @@ export default class AddListingForm extends React.Component {
             file_ids: [], 
             fileErrorCode: 0,
             categoryOptions: [],
-            uploading: false
+            uploading: false,
+            globalError: null
         };
     }
 
@@ -77,7 +84,21 @@ export default class AddListingForm extends React.Component {
     }
 
     checkFiles(files) {
-        if ((files.length <= 7) && (files.length > 0)) {
+        let size = 0;
+
+        for (let i=0; i < files.length; i++) {
+            size += files[i].size;
+        }
+
+        // TODO: consolidated error message will all errors
+        // too large files
+        if (size > 10000000) {
+            this.setState({ fileErrorCode: 3 });
+            this.setState({ files: [] });
+            return 1;
+        }
+
+        if ((files.length <= 10) && (files.length > 0)) {
             return 0;
         }
         else if (files.length == 0) {
@@ -94,6 +115,7 @@ export default class AddListingForm extends React.Component {
 
     onDrop(files) {
         if (this.checkFiles(files) == 0) {
+            this.setState({ fileErrorCode: 0 });
             this.setState({ files: files });
         } 
     }
@@ -130,6 +152,11 @@ export default class AddListingForm extends React.Component {
                     .put(requestData)
                     .then(res => {
                         this.setState({ fireRedirect: true });
+                    }).catch(e => {
+                        this.setState({ 
+                            uploading: false,
+                            globalError: "Make sure you fill out all the fields."
+                        });
                     });
             });
         } else {
@@ -144,7 +171,6 @@ export default class AddListingForm extends React.Component {
 
     onResolved() {
         this.setState({ recaptchaToken: this.recaptcha.getResponse() });
-        console.log(this.state.recaptchaToken);
         // below line essential to trigger onSubmit on the form.
         // simple submit does not work.
         document.getElementById("addListingForm").dispatchEvent(new Event("submit")); 
@@ -155,19 +181,39 @@ export default class AddListingForm extends React.Component {
 
         if (this.state.fileErrorCode == 1) {
             DropzoneMsg = props => (
-                <p>Please select at least one image.</p>
-            );
+                <Message negative>
+                    <Message.Header>Select Image(s)</Message.Header>
+                    <p>All listings require at least one associated photo.</p>
+                </Message>
+           );
         }
         else if (this.state.fileErrorCode == 2) {
             DropzoneMsg = props => (
-                <p>Too many files (6 max). Please select your images again.</p>
+                <Message negative>
+                    <Message.Header>Select Image(s)</Message.Header>
+                    <p>You selected too many images. At this time, a listing can have at most 10 images.</p>
+                </Message>
+            );
+        }
+        else if (this.state.fileErrorCode == 3) {
+            DropzoneMsg = props => (
+                <Message
+                    negative
+                    header="Select Image(s)"
+                    content="Images are too large. At this time, the photos of a listing must collectively be under 10 MB in size."
+                />
             );
         }
         else {
             DropzoneMsg = props => (
-                <p>Drop images here, or click to upload.</p>
+                <Message>
+                    <Message.Header>Select Image(s)</Message.Header>
+                    <p>All listings require at least one associated photo.</p>
+                </Message>
             );
         }
+
+        let dropzoneRef;
 
         const FormContent = props => (
             <form 
@@ -177,22 +223,34 @@ export default class AddListingForm extends React.Component {
                 onSubmit={props.formApi.submitForm}
             >
                 <div className="field required">
-                    <label>Your name</label>
-                    <Text field="name" id="name" className="ui input" placeholder="Name" required />
+                    <label>Listing Title</label>
+                    <Text 
+                        field="name" 
+                        id="name" 
+                        className="ui input" 
+                        placeholder="1908 Ford Model T" 
+                        validate={requiredValidate}
+                        required />
                 </div>
                 
                 <div className="field required">
-                    <label>Describe your listing</label>
-                    <TextArea field="about" id="about" required />
+                    <label>Describe Your Listing</label>
+                    <TextArea 
+                        field="about" 
+                        id="about" 
+                        validate={requiredValidate}
+                        required />
                 </div>
 
                 <div className="field required">
-                    <label>Listing categories</label>
+                    <label>Listing Categories</label>
                     <Select 
                         field="category" 
                         id="category" 
                         options={this.state.categoryOptions} 
-                        className="ui selection dropdown" required /> 
+                        className="ui selection dropdown" 
+                        validate={requiredValidate}
+                        required /> 
                 </div>
 
                 <div className="field required">
@@ -211,8 +269,7 @@ export default class AddListingForm extends React.Component {
                     <Dropzone 
                         onDrop={this.onDrop.bind(this)} 
                         accept="image/*" 
-                        className="fluid" required
-                    >
+                        className="fluid" required >
                         <DropzoneMsg />
 
                         <List as='ol'>
@@ -225,7 +282,7 @@ export default class AddListingForm extends React.Component {
                             }
                         </List>
                     </Dropzone>
-                </div>
+               </div>
 
                 <div className="ui button positive" onClick={this.onSubmit}>POST</div>
 
@@ -257,12 +314,26 @@ export default class AddListingForm extends React.Component {
                 );
             }
 
-            return (
+            let globalErrorMsg;
 
-                <Form 
-                    validateError={errorValidator}
-                    onSubmit={this.handleSubmit}
-                    component={FormContent} />
+            if (this.state.globalError) {
+                globalErrorMsg = (
+                    <Message 
+                        negative
+                        header="Something went wrong."
+                        content={this.state.globalError} />
+                );
+            }
+
+            return (
+                <div>
+                    {globalErrorMsg}
+
+                    <Form 
+                        validateError={errorValidator}
+                        onSubmit={this.handleSubmit}
+                        component={FormContent} />
+                </div>
             );
         }
     }
