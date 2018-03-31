@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 
 import { 
     Container, 
@@ -28,7 +29,8 @@ export default class ListingDetail extends React.Component {
 
         this.state = {
             listing: null,
-            contacted: false
+            contacted: false,
+            notFound: false
         };
     }
 
@@ -37,6 +39,9 @@ export default class ListingDetail extends React.Component {
             .get(this.props.match.params.id)
             .then(res => {
                 this.setState({ listing: res });
+            })
+            .catch(e => {
+                this.setState({ notFound: true });
             });
     }
 
@@ -45,6 +50,11 @@ export default class ListingDetail extends React.Component {
     }
 
     render() {
+        // If listing not found, redirect home
+        if (this.state.notFound) {
+            return <Redirect to="/404" />
+        }        
+
         var content;
         if (this.state.listing) {
             var images = [];
