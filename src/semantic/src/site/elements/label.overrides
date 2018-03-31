@@ -7,6 +7,6 @@
 }
 
 .ui[class*="top right attached"].label {
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 15px;
 }

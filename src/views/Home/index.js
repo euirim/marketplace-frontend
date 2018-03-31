@@ -38,6 +38,7 @@ export default class Home extends React.Component {
             var key = 1;    
             
             if (nextProps.location.state && nextProps.location.state.key) {
+                this.setState({category: null}); // fix category refresh bug
                 key = nextProps.location.state.key;
             } 
 

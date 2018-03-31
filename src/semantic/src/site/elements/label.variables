@@ -7,5 +7,5 @@
 /* Attachment */
 @attachedCornerBorderRadius: 0;
 @attachedSegmentPadding: 0;
-@attachedVerticalPadding: 0.5rem;
-@attachedHorizontalPadding: 0.6rem;
+@attachedVerticalPadding: 0.6rem;
+@attachedHorizontalPadding: 0.7rem;
