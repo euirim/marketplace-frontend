@@ -1,3 +1,7 @@
+input {
+    border-radius: 0!important;
+}
+
 /* Base Navbar */
 #mainNavbar {
     height: 65px;
@@ -13,6 +17,45 @@
 
 .listing-card-header {
     font-weight: 400;
+}
+
+/* Masthead */
+.masthead {
+    padding-top: 5em;
+    padding-bottom: 1em;
+    margin-bottom: 2em;
+    color: white;
+}
+
+.masthead input {
+    border:none!important;
+}
+
+.masthead .dropdown {
+    height: 100%;
+    border: none!important;
+    padding-top: 1em!important;
+}
+
+.masthead .dropdown.icon {
+    padding-top: 1.4em!important;
+}
+
+.masthead .dropdown .text {
+    font-size: 1.25em;
+} 
+
+.masthead .dropdown .menu .item span.text {
+    font-size: 1em;
+} 
+
+.masthead-header {
+    font-weight: 400;
+    color: white;
+}
+
+.masthead-form .fields>.field {
+    padding-top: 1em;
 }
 
 /* Footer */
