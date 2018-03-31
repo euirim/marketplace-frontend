@@ -8,7 +8,7 @@ var settings = {
   bundleName: "bundle_prod.js",
   apiURL: "https://marketplace.chicagomaroon.com/",
   rootURL: "",
-  fbAppID: "428104970976762",
+  fbAppID: "155579525119529",
   s3URL: "https://s3.us-east-2.amazonaws.com/maroon-marketplace"
 };
 
