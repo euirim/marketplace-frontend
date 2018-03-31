@@ -2,14 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { 
     Container, 
-    Header, 
-    Grid, 
-    Menu, 
-    Icon,
-    Input,
-    Form,
-    Dropdown,
-    Button
+    Grid
 } from "semantic-ui-react";
 import {Helmet} from "react-helmet";
 
@@ -71,6 +64,10 @@ export default class Home extends React.Component {
     render() {
         return (
             <div key={this.state.key}>
+                <Helmet>
+                    <title>Marketplace | The Chicago Maroon</title>
+                </Helmet>
+
                 <Masthead 
                     onSearch={this._handleSearch}
                     onCategoryUpdate={this._handleCategoryUpdate} />
