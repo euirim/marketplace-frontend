@@ -6,7 +6,7 @@ var CompressionPlugin = require('compression-webpack-plugin');
 
 var settings = {
   bundleName: "bundle_prod.js",
-  apiURL: "https://marketplace.us-east-2.elasticbeanstalk.com/",
+  apiURL: "https://marketplace.chicagomaroon.com/",
   rootURL: "",
   fbAppID: "428104970976762",
   s3URL: "https://s3.us-east-2.amazonaws.com/maroon-marketplace"
