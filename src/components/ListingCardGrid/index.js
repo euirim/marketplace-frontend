@@ -40,7 +40,9 @@ export default class ListingCardGrid extends React.Component {
                 name={ listing.name } 
                 price={ listing.price } 
                 category={ listing.category } 
-                photo={ listing.photos[0] } />
+                photo={ listing.photos[0] }
+                deleteButton={ this.props.deleteButton }
+                hasInnerLinks={ this.props.hasInnerLinks } />
         );
         var card;
         if (this.props.itemsPerRow > 2) {

@@ -7,7 +7,7 @@ var default_page_size = 25;
 function get(id) {
     return request({
         url: `/api/listings/${id}.json`,
-        method: "GET",
+        method: "GET"
     });
 }
 
@@ -43,7 +43,7 @@ function filter(params) {
 
 function put(data) {
     return request({
-            url: `/api/listings/new/`,
+        url: `/api/listings/new/`,
         method: "PUT",
         headers: {
             "X-CSRFToken": Cookies.get("csrftoken")
@@ -52,12 +52,23 @@ function put(data) {
     }); 
 }
 
+function del(id) {
+    return request({
+        url: `/api/listings/${id}.json`,
+        method: "DELETE",
+        headers: {
+            "X-CSRFToken": Cookies.get("csrftoken")
+        }
+    });
+}
+
 const ListingService = { 
     get, 
     get_most_recent,
     get_my_listings,
     put,
-    filter
+    filter,
+    del
 };
 
 export default ListingService;

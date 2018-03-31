@@ -89,7 +89,11 @@ export default class Profile extends React.Component {
 
                         <Grid.Column computer={11} tablet={10}>
                             { addedListingMsg }
-                            <ListingCardGrid itemsPerRow={2} listings={this.state.listings} />
+                            <ListingCardGrid 
+                                itemsPerRow={2} 
+                                listings={this.state.listings}
+                                deleteButton
+                                hasInnerLinks />
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

@@ -10,16 +10,63 @@ import {
     Segment,
     Label,
     Header,
-    Icon
+    Icon,
+    Button,
+    Dimmer
 } from 'semantic-ui-react';
 import ProgressiveImage from "react-progressive-image";
 
-import URLService from "services/urls/index.js"
+import URLService from "services/urls/index.js";
+import ListingDeleteButton from "components/ListingDeleteButton";
 
 export default class ListingCard extends React.Component {
+    constructor(props) {
+        super(props);
+        
+        this._deleteHandler = this._deleteHandler.bind(this);
+
+        this.state = {
+            deleted: false
+        };
+    }
+
+    _deleteHandler() {
+        this.setState({deleted: true});
+    }
+
     render(){
+        var deleteButton;
+
+        if (this.props.deleteButton) {
+            deleteButton = (
+                <Card.Content extra>
+                    <div className="ui two buttons">
+                        <Button basic color="green" disabled>Claim</Button>
+                        <ListingDeleteButton 
+                            listingID={this.props.id}
+                            clickHandler={this._deleteHandler} />
+                    </div>
+                </Card.Content>
+            );
+        }
+
+        var outerParams = {};
+        var innerParams = {};
+
+        if (this.props.hasInnerLinks) { // whether card itself is a link
+            innerParams = {
+                as: Link,
+                to: "/listings/" + this.props.id
+            };
+        } else {
+            outerParams = {
+                as: Link,
+                to: "/listings/" + this.props.id
+            };
+        }
+
         return (
-            <Card as={ Link } to={ "/listings/" + this.props.id } centered fluid>
+            <Card centered fluid {...outerParams}>
                 <ProgressiveImage 
                     src={ URLService.genMediaURL(this.props.photo) }
                     placeholder={ URLService.genStaticURL("/images/card_img_ph.png") }>
@@ -34,12 +81,13 @@ export default class ListingCard extends React.Component {
                                     color: this.props.category.color
                                 }
                             } 
-                            src={ src }>
+                            src={ src }
+                            {...innerParams}>
                         </Image>
                     )}
                 </ProgressiveImage>
 
-                <Card.Content>
+                <Card.Content {...innerParams}>
                     <Card.Header disabled>
                         <span className="listing-card-header">{ this.props.name }</span>
                     </Card.Header>
@@ -49,6 +97,8 @@ export default class ListingCard extends React.Component {
                         <Icon name="dollar" disabled fitted /> { this.props.price }
                     </Card.Header>
                 </Card.Content>
+
+                { deleteButton }
             </Card>
         );
     }
