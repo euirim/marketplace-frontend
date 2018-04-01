@@ -5,8 +5,14 @@ import { Helmet } from "react-helmet";
 
 import AddListingForm from "components/AddListingForm";
 import CentralPanel from "components/CentralPanel";
+import AnalyticsService from "services/api/analytics.js";
 
 export default class AddListing extends React.Component {
+    componentDidMount() {
+        // analytics
+        AnalyticsService.recordPageVisit();
+    }
+
     render() {
         return (
             <CentralPanel

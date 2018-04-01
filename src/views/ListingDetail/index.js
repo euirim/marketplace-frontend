@@ -16,6 +16,7 @@ import { Helmet } from "react-helmet";
 
 import ListingService from "services/api/listing.js";
 import URLService from "services/urls";
+import AnalyticsService from "services/api/analytics.js";
 import ListingDetailCard from "components/ListingDetailCard";
 import InquiryForm from "components/InquiryForm";
 
@@ -43,6 +44,9 @@ export default class ListingDetail extends React.Component {
             .catch(e => {
                 this.setState({ notFound: true });
             });
+
+        // analytics
+        AnalyticsService.recordPageVisit();
     }
 
     handleContact() {

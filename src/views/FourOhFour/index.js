@@ -5,8 +5,14 @@ import { Helmet } from "react-helmet";
 
 import FourOhFourPanel from "components/FourOhFourPanel";
 import CentralPanel from "components/CentralPanel";
+import AnalyticsService from "services/api/analytics.js";
 
 export default class FourOhFour extends React.Component {
+    componentDidMount() {
+        // analytics
+        AnalyticsService.recordPageVisit();
+    }
+
     render() {
         return (
             <CentralPanel computer={6} tablet={10} mobile={16}>

@@ -12,6 +12,7 @@ import {
 import { Helmet } from "react-helmet";
 
 import AuthService from "services/api/auth.js";
+import AnalyticsService from "services/api/analytics.js";
 import LoginPanel from "components/LoginPanel";
 import CentralPanel from "components/CentralPanel";
 
@@ -33,6 +34,9 @@ export default class Login extends React.Component {
             js.src = "https://connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+
+        // analytics
+        AnalyticsService.recordPageVisit();
     }
 
     render() {

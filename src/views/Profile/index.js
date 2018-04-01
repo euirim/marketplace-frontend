@@ -18,6 +18,7 @@ import ListingService from "services/api/listing.js";
 
 import UserCard from "components/UserCard";
 import ListingCardGrid from "components/ListingCardGrid";
+import AnalyticsService from "../../services/api/analytics";
 
 export default class Profile extends React.Component {
     constructor(props) {
@@ -39,6 +40,9 @@ export default class Profile extends React.Component {
             .then(res => {
                 this.setState({listings: res});
             });
+
+        // analytics
+        AnalyticsService.recordPageVisit();
     }
 
     render() {

@@ -9,6 +9,7 @@ import {Helmet} from "react-helmet";
 import ListingList from "containers/ListingList";
 import Masthead from "components/Masthead";
 import ListingService from "services/api/listing.js";
+import AnalyticsService from "services/api/analytics.js";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -21,6 +22,11 @@ export default class Home extends React.Component {
             category: null,
             query: null
         };
+    }
+
+    componentDidMount() {
+        // analytics
+        AnalyticsService.recordPageVisit();
     }
 
     componentWillReceiveProps(nextProps) {
