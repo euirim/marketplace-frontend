@@ -15,7 +15,8 @@ export default class PaginationMenu extends React.Component{
             <Pagination 
                 activePage={this.props.activePage}
                 totalPages={this.props.totalPages} 
-                onPageChange={this.props.onPageChange}/>
+                onPageChange={this.props.onPageChange}
+                stackable/>
         );
     }
 };

@@ -30,7 +30,7 @@ export default class Footer extends React.Component {
                             </List.Item>
                             <List.Item 
                                 as="a"
-                                href="https://www.chicagomaroon.com/pages/marketplace-contact/">
+                                href="https://www.chicagomaroon.com/pages/marketplace-feedback/">
                                 Contact
                             </List.Item>
                             <List.Item as="a" href="https://www.chicagomaroon.com">The Maroon</List.Item>
