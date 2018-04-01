@@ -25,7 +25,7 @@ function statusChangeCallback(response, redirect_path) {
             .then(res => {
                 // set cookie indicating logged in
                 Cookies.remove("authName");
-                Cookies.set("authName", undefined, {expires: 14});
+                Cookies.set("authName", undefined);
 
                 getLoginStatus()
                     .then(res => {
@@ -33,7 +33,7 @@ function statusChangeCallback(response, redirect_path) {
                             "firstName": res.firstName,
                             "lastName": res.lastName
                         };
-                        Cookies.set("authName", cookie, {expires: 14});
+                        Cookies.set("authName", cookie);
                         window.location.replace(redirect_path); // home page
                     });
             })
