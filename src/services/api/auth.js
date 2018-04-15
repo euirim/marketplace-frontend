@@ -4,7 +4,7 @@
 
 import Cookies from "js-cookie";
 import request from "shared/lib/request";
-import URLService from "services/urls"
+import URLService from "services/urls";
 
 // handles response from Facebook SDK
 function statusChangeCallback(response, redirect_path) {
@@ -106,18 +106,18 @@ function fbSDKInitWrapper() {
 }
 
 function handleClick(redirect_path="/") {
-        FB.init({
-            appId      : FB_APP_ID,
-            cookie     : true,
-            xfbml      : true,
-            version    : 'v2.12'
-        });
+    FB.init({
+        appId      : FB_APP_ID,
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v2.12'
+    });
 
-        FB.login(res => {
-            if (res.authResponse) {
-                checkLogin(redirect_path);
-            }
-        }, {scope: 'email,public_profile'});
+    FB.login(res => {
+        if (res.authResponse) {
+            checkLogin(redirect_path);
+        }
+    }, {scope: 'email,public_profile'});
 }
 
 // checks for authentication cookie. Should only be used
