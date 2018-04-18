@@ -16,7 +16,7 @@ const init_state = () => {
         loadListings: false,
         totalPages: null,
         params: {
-            page_size: 12,
+            page_size: 18,
             category: null,
             page: 1,
             search: null
