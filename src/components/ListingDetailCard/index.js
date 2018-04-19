@@ -1,4 +1,5 @@
 import React from "react";
+import TimeAgo from "timeago-react";
 import { 
     Card, 
     Label,
@@ -26,9 +27,15 @@ export default class ListingDetailCard extends React.Component {
         return (
             <Card fluid>
                 <Card.Content>
-                    <Label color={ this.props.listing.category.color }>
+                    <Label color={ this.props.listing.category.color } style={{"float": "right"}}>
                         { this.props.listing.category.name }
                     </Label>
+
+                    <Card.Meta>
+                        <Icon name="clock" />
+                        <TimeAgo 
+                            datetime={ this.props.listing.time_created } />
+                    </Card.Meta>
                 </Card.Content>
 
                 <Card.Content>

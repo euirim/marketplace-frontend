@@ -41,6 +41,7 @@ export default class ListingCardGrid extends React.Component {
                 price={ listing.price } 
                 category={ listing.category } 
                 photo={ listing.photos[0] }
+                timePosted={ listing.time_created }
                 deleteButton={ this.props.deleteButton }
                 hasInnerLinks={ this.props.hasInnerLinks } />
         );

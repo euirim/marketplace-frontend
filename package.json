@@ -61,6 +61,7 @@
         "reactstrap": "^5.0.0-beta",
         "semantic-ui": "^2.2.13",
         "semantic-ui-react": "^0.77.2",
+        "timeago-react": "^2.0.0",
         "uuid": "^3.2.1"
     }
 }

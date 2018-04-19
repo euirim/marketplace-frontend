@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import TimeAgo from "timeago-react";
 
 import {
     Link
@@ -93,6 +94,12 @@ export default class ListingCard extends React.Component {
                     </Card.Header>
                 </Card.Content>
                 <Card.Content extra>
+                    <Card.Meta style={{"float": "right"}}>
+                        <Icon name="clock" />
+                        <TimeAgo 
+                            datetime={ this.props.timePosted } />
+                    </Card.Meta>
+
                     <Card.Header>
                         <Icon name="dollar" disabled fitted /> { this.props.price }
                     </Card.Header>

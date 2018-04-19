@@ -32,7 +32,8 @@ export default class AddListing extends React.Component {
                                 POST LISTING
                             </Header.Content>
                             <Header.Subheader>
-                                Let everyone know what you're selling or offering.
+                                <p>Let everyone know what you're selling or offering.</p>
+                                <p>Listings stay up for 60 days.</p>
                             </Header.Subheader>
                         </Header>
                     </Card.Content>
