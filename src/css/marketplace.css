@@ -4,7 +4,8 @@ input {
 
 /* Base Navbar */
 #mainNavbar {
-    height: 65px;
+    height: 66px;
+    border: none!important;
 }
 
 .listing-filter-nav {
