@@ -8,6 +8,7 @@
 @imageWidth: 225px;
 
 @itemFontWeight: bold;
+@itemTextColor: @textColor;
 
 /* Text */
 @textMenuMargin: 0 -(@textMenuItemSpacing);
