@@ -1,0 +1,13 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+/* Menu */
+@menuBoxShadow: 0px 3px 18px 0px @solidBorderColor;
+@menuBorder: none;
+
+/* Item */
+@itemVerticalPadding: @small;
+@itemHorizontalPadding: @big;
+@itemFontWeight: bold;
+@itemTextTransform: uppercase;

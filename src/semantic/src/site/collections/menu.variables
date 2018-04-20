@@ -1,0 +1,22 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@boxShadow: 0px 1px 6px 0px @borderColor;
+
+@imageMargin: 0;
+@imageWidth: 225px;
+
+@itemFontWeight: bold;
+@itemTextColor: @textColor;
+
+/* Text */
+@textMenuMargin: 0 -(@textMenuItemSpacing);
+@textMenuItemColor: @black;
+@textMenuActiveItemFontWeight: bold;
+
+/* Dropdown in Menu */
+@dropdownMenuBoxShadow: 0px 1px 6px 0px @solidBorderColor;
+@dropdownItemPadding: @relativeSmall @relativeBig;
+@dropdownItemTextTransform: uppercase;
+@dropdownItemFontWeight: bold;

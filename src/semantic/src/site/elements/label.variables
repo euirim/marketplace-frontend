@@ -1,0 +1,11 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@borderRadius: 0;
+
+/* Attachment */
+@attachedCornerBorderRadius: 0;
+@attachedSegmentPadding: 0;
+@attachedVerticalPadding: 0.6rem;
+@attachedHorizontalPadding: 0.7rem;

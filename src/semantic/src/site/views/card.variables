@@ -1,0 +1,31 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@border: none;
+
+// Shadow
+@shadowBoxShadow: 0px @shadowDistance 6px 0px @solidBorderColor;
+@boxShadow: @shadowBoxShadow;
+
+// Transition
+@transition:
+  box-shadow 0.3s @defaultEasing,
+  transform 0.3s @defaultEasing
+;
+
+/*-------------------
+       Content
+--------------------*/
+
+/*-------------------
+      Variations
+--------------------*/
+
+@linkHoverRaiseDistance: 0.5em;
+@linkHoverBorder: 0 0 3px 0 solid @red;
+@shadowHoverBoxShadow: 0px @shadowDistance (@linkHoverRaiseDistance * 3) 0px @solidSelectedBorderColor;
+@linkHoverBoxShadow: @shadowHoverBoxShadow;
+
+/* Colored */
+@coloredShadowDistance: 3px;
