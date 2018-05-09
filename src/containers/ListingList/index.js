@@ -83,8 +83,9 @@ export default class ListingList extends React.Component {
         // promotions
         PromotionService.get_most_recent()
             .then(res => {
+                var params = this.state.params;
+
                 if (res.results.length != 0) {
-                    var params = this.state.params;
                     params.page_size = init_state().page_size - 1;
                     params.num_promotions = 1;
                 } else {
