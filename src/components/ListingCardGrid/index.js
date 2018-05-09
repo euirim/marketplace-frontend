@@ -37,19 +37,23 @@ export default class ListingCardGrid extends React.Component {
             );
         }
 
-         var promotions = this.state.promotions.map((p) => 
-            <ListingCard 
-                key={ p.listing.id } 
-                id={ p.listing.id }
-                name={ p.listing.name } 
-                price={ p.listing.price } 
-                category={ p.listing.category } 
-                photo={ p.listing.photos[0] }
-                timePosted={ p.listing.time_created }
-                deleteButton={ this.props.deleteButton }
-                hasInnerLinks={ this.props.hasInnerLinks } 
-                promoted />
-        );
+        var promotions;
+
+        if (this.props.promotions) {
+            promotions = this.props.promotions.map((p) => 
+                <ListingCard 
+                    key={ p.listing.id } 
+                    id={ p.listing.id }
+                    name={ p.listing.name } 
+                    price={ p.listing.price } 
+                    category={ p.listing.category } 
+                    photo={ p.listing.photos[0] }
+                    timePosted={ p.listing.time_created }
+                    deleteButton={ this.props.deleteButton }
+                    hasInnerLinks={ this.props.hasInnerLinks } 
+                    promoted />
+            );
+        }
 
         var listings = this.props.listings.map((listing) => 
             <ListingCard 
