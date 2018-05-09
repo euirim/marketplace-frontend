@@ -37,7 +37,7 @@ export default class ListingCardGrid extends React.Component {
             );
         }
 
-         var promotions = this.props.promotions.map((p) => 
+         var promotions = this.state.promotions.map((p) => 
             <ListingCard 
                 key={ p.listing.id } 
                 id={ p.listing.id }
