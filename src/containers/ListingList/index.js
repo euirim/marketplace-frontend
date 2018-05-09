@@ -9,14 +9,17 @@ import PaginationMenu from "components/PaginationMenu";
 
 import CategoryService from "services/api/category.js";
 import ListingService from "services/api/listing.js";
+import PromotionService from "services/api/promotion.js";
 
 const init_state = () => {
     return ({
         listings: [],
+        promotions: [],
         loadListings: false,
         totalPages: null,
         params: {
             page_size: 18,
+            num_promotions: 0,
             category: null,
             page: 1,
             search: null
@@ -76,14 +79,33 @@ export default class ListingList extends React.Component {
         // Enable loader
         this.setState({loadingListings: true});
 
-        ListingService.filter(this.state.params)
+        // load promotions then listings based on number of
+        // promotions
+        PromotionService.get_most_recent()
             .then(res => {
-                this.setState({
-                    listings: res.results,
-                    totalPages: res.total_pages
-                });
+                if (res.results.length != 0) {
+                    var params = this.state.params;
+                    params.page_size = init_state().page_size - 1;
+                    params.num_promotions = 1;
+                } else {
+                    params.page_size = init_state().page_size;
+                }
 
-                this.setState({loadingListings: false});
+                this.setState({
+                    promotions: res.results,
+                    params: params
+                });
+            })
+            .then(res => {
+                ListingService.filter(this.state.params)
+                    .then(res => {
+                        this.setState({
+                            listings: res.results,
+                            totalPages: res.total_pages
+                        });
+
+                        this.setState({loadingListings: false});
+                    });
             });
     }
 
@@ -117,6 +139,7 @@ export default class ListingList extends React.Component {
                     <Grid.Column width={16}>
                         <div style={{ width: "100%" }}>
                             <ListingCardGrid 
+                                promotions={this.state.promotions}
                                 loading={this.state.loadingListings}
                                 itemsPerRow={this.props.itemsPerRow} 
                                 listings={ this.state.listings } />

@@ -13,7 +13,8 @@ import {
     Header,
     Icon,
     Button,
-    Dimmer
+    Dimmer,
+    Popup
 } from 'semantic-ui-react';
 import ProgressiveImage from "react-progressive-image";
 
@@ -37,6 +38,9 @@ export default class ListingCard extends React.Component {
 
     render(){
         var deleteButton;
+        var outerParams = {};
+        var innerParams = {};
+        var promotedIcon;
 
         if (this.props.deleteButton) {
             deleteButton = (
@@ -51,9 +55,6 @@ export default class ListingCard extends React.Component {
             );
         }
 
-        var outerParams = {};
-        var innerParams = {};
-
         if (this.props.hasInnerLinks) { // whether card itself is a link
             innerParams = {
                 as: Link,
@@ -64,6 +65,18 @@ export default class ListingCard extends React.Component {
                 as: Link,
                 to: "/listings/" + this.props.id
             };
+        }
+
+        // promoted icon
+        if (this.props.promoted) {
+            promotedIcon = (
+                <Popup 
+                    trigger={<Icon name="arrow circle up" color="red" />}
+                    content="Promoted"
+                    horizontalOffset={-5}
+                    inverted />
+                
+            );
         }
 
         return (
@@ -95,6 +108,7 @@ export default class ListingCard extends React.Component {
                 </Card.Content>
                 <Card.Content extra>
                     <Card.Meta style={{"float": "right"}}>
+                        { promotedIcon }
                         <Icon name="clock" />
                         <TimeAgo 
                             datetime={ this.props.timePosted } />

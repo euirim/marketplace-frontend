@@ -14,12 +14,16 @@ export default class ListingCardGrid extends React.Component {
         super(props);
     
         this.state = {
-            listings: []
+            listings: [],
+            promotions: []
         };
     }
 
     componentDidMount() {
-        this.setState({listings: this.props.listings});
+        this.setState({
+            listings: this.props.listings,
+            promotions: this.props.promotions
+        });
     }
 
     render() {
@@ -33,6 +37,20 @@ export default class ListingCardGrid extends React.Component {
             );
         }
 
+         var promotions = this.props.promotions.map((p) => 
+            <ListingCard 
+                key={ p.listing.id } 
+                id={ p.listing.id }
+                name={ p.listing.name } 
+                price={ p.listing.price } 
+                category={ p.listing.category } 
+                photo={ p.listing.photos[0] }
+                timePosted={ p.listing.time_created }
+                deleteButton={ this.props.deleteButton }
+                hasInnerLinks={ this.props.hasInnerLinks } 
+                promoted />
+        );
+
         var listings = this.props.listings.map((listing) => 
             <ListingCard 
                 key={ listing.id } 
@@ -45,6 +63,9 @@ export default class ListingCardGrid extends React.Component {
                 deleteButton={ this.props.deleteButton }
                 hasInnerLinks={ this.props.hasInnerLinks } />
         );
+
+        listings = promotions.concat(listings);
+
         var card;
         if (this.props.itemsPerRow > 2) {
             card = (
