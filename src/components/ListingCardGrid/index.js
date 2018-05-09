@@ -39,6 +39,19 @@ export default class ListingCardGrid extends React.Component {
 
         var promotions;
 
+        var listings = this.props.listings.map((listing) => 
+            <ListingCard 
+                key={ listing.id } 
+                id={ listing.id }
+                name={ listing.name } 
+                price={ listing.price } 
+                category={ listing.category } 
+                photo={ listing.photos[0] }
+                timePosted={ listing.time_created }
+                deleteButton={ this.props.deleteButton }
+                hasInnerLinks={ this.props.hasInnerLinks } />
+        );
+
         if (this.props.promotions) {
             promotions = this.props.promotions.map((p) => 
                 <ListingCard 
@@ -53,22 +66,9 @@ export default class ListingCardGrid extends React.Component {
                     hasInnerLinks={ this.props.hasInnerLinks } 
                     promoted />
             );
+
+            listings = promotions.concat(listings);
         }
-
-        var listings = this.props.listings.map((listing) => 
-            <ListingCard 
-                key={ listing.id } 
-                id={ listing.id }
-                name={ listing.name } 
-                price={ listing.price } 
-                category={ listing.category } 
-                photo={ listing.photos[0] }
-                timePosted={ listing.time_created }
-                deleteButton={ this.props.deleteButton }
-                hasInnerLinks={ this.props.hasInnerLinks } />
-        );
-
-        listings = promotions.concat(listings);
 
         var card;
         if (this.props.itemsPerRow > 2) {
