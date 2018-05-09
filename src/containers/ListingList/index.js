@@ -86,10 +86,10 @@ export default class ListingList extends React.Component {
                 var params = this.state.params;
 
                 if (res.results.length != 0) {
-                    params.page_size = init_state().page_size - 1;
+                    params.page_size = init_state().params.page_size - 1;
                     params.num_promotions = 1;
                 } else {
-                    params.page_size = init_state().page_size;
+                    params.page_size = init_state().params.page_size;
                 }
 
                 this.setState({
